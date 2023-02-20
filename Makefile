@@ -32,7 +32,9 @@ EE_BIN = athena.elf
 EE_BIN_PKD = athena_pkd.elf
 
 RESET_IOP = 1
-BDM = 0
+BDM ?= 0
+EESIO_DEBUG ?= 0
+DEBUG ?= 0
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ -lpatches -lfileXio -lcdvd -lpad -ldebug -lmath3d -ljpeg -lfreetype -lgskit_toolkit -lgskit -ldmakit -lpng -lz -lmc -laudsrv -lelf-loader -lds34bt -lds34usb
 
@@ -48,6 +50,11 @@ endif
 
 ifeq ($(BDM),1)
 EE_CFLAGS += -DBDM
+endif
+
+ifeq ($(EESIO_DEBUG),1)
+EE_CFLAGS += -DEESIO_DEBUG
+EE_LIBS += -lsiocookie
 endif
 
 ifeq ($(DEBUG),1)

@@ -9,6 +9,7 @@
 #include "include/graphics.h"
 
 #include "include/system.h"
+#include "include/debugprintf.h"
 
 #define MAX_DIR_FILES 512
 
@@ -62,7 +63,7 @@ duk_ret_t athena_setCurrentDirectory(duk_context *ctx)
 	   }
         }
         
-        printf("changing directory to %s\n",__ps2_normalize_path(temp_path));
+        DPRINTF("changing directory to %s\n",__ps2_normalize_path(temp_path));
         chdir(__ps2_normalize_path(temp_path));
        
 	return 1;
@@ -88,7 +89,7 @@ duk_ret_t athena_dir(duk_context *ctx)
 	char path[255];
 	
 	getcwd((char *)path, 256);
-	printf("current dir %s\n",(char *)path);
+	DPRINTF("current dir %s\n",(char *)path);
 	
 	if (argc != 0) 
 	{
@@ -106,7 +107,7 @@ duk_ret_t athena_dir(duk_context *ctx)
 	}
 	
 	strcpy(path,__ps2_normalize_path(path));
-	printf("\nchecking path : %s\n",path);
+	DPRINTF("\nchecking path : %s\n",path);
 		
 
         
@@ -177,7 +178,7 @@ duk_ret_t athena_dir(duk_context *ctx)
 
 			duk_idx_t obj_idx = duk_push_object(ctx);
 
-	    	printf("%s\n", dir->d_name);
+	    	DPRINTF("%s\n", dir->d_name);
 			duk_push_string(ctx, dir->d_name);
 			duk_put_prop_string(ctx, obj_idx, "name");
 	
@@ -514,7 +515,7 @@ duk_ret_t athena_checkValidDisc(duk_context *ctx)
 		case SCECdIllegalMedia:
 			result = 0;
 	}
-	printf("Valid Disc: %d\n",result);
+	DPRINTF("Valid Disc: %d\n",result);
 	duk_push_int(ctx, result); //return the value itself to Lua stack
     return 1; //return value quantity on stack
 }
@@ -542,7 +543,7 @@ duk_ret_t athena_getDiscType(duk_context *ctx)
         for (iz = 0; DiscTypes[iz].name[0]; iz++)
             if (DiscTypes[iz].type == discType)
                 DiscType_ix = iz;
-    printf("getDiscType: %d\n",DiscTypes[DiscType_ix].value);
+    DPRINTF("getDiscType: %d\n",DiscTypes[DiscType_ix].value);
     duk_push_int(ctx, DiscTypes[DiscType_ix].value); //return the value itself to Lua stack
     return 1; //return value quantity on stack
 }

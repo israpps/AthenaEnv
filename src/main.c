@@ -27,6 +27,7 @@
 
 #include <libds34bt.h>
 #include <libds34usb.h>
+#include "include/debugprintf.h"
 
 extern unsigned char iomanX_irx[] __attribute__((aligned(16)));
 extern unsigned int size_iomanX_irx;
@@ -122,14 +123,14 @@ void initMC(void)
    // mc variables
    int mc_Type, mc_Free, mc_Format;
 
-   printf("initMC: Initializing Memory Card\n");
+   DPRINTF("initMC: Initializing Memory Card\n");
 
    ret = mcInit(MC_TYPE_XMC);
    
    if( ret < 0 ) {
-	printf("initMC: failed to initialize memcard server.\n");
+	DPRINTF("initMC: failed to initialize memcard server.\n");
    } else {
-       printf("initMC: memcard server started successfully.\n");
+       DPRINTF("initMC: memcard server started successfully.\n");
    }
    
    // Since this is the first call, -1 should be returned.
@@ -139,18 +140,18 @@ void initMC(void)
 }
 
 int main(int argc, char **argv) {
-  
-    printf("AthenaEnv: Starting IOP Reset...\n");
+    DEBUG_START();
+    DPRINTF("AthenaEnv: Starting IOP Reset...\n");
     SifInitRpc(0);
     #if defined(RESET_IOP)  
     while (!SifIopReset("", 0)){};
     #endif
     while (!SifIopSync()){};
     SifInitRpc(0);
-    printf("AthenaEnv: IOP reset done.\n");
+    DPRINTF("AthenaEnv: IOP reset done.\n");
     
     // install sbv patch fix
-    printf("AthenaEnv: Installing SBV Patches...\n");
+    DPRINTF("AthenaEnv: Installing SBV Patches...\n");
     sbv_patch_enable_lmb();
     sbv_patch_disable_prefix_check(); 
     sbv_patch_fileio(); 
@@ -161,7 +162,7 @@ int main(int argc, char **argv) {
     fileXioInitSkipOverride();
 
     // load pad & mc modules 
-    printf("AthenaEnv: Installing Pad & Memory Card modules...\n");
+    DPRINTF("AthenaEnv: Installing Pad & Memory Card modules...\n");
 
     SifExecModuleBuffer(&mcman_irx, size_mcman_irx, 0, NULL, NULL);
     SifExecModuleBuffer(&mcserv_irx, size_mcserv_irx, 0, NULL, NULL);
@@ -226,7 +227,7 @@ int main(int argc, char **argv) {
 
         if (errMsg != NULL)
         {
-            printf("AthenaEnv ERROR!\n%s", errMsg);
+            DPRINTF("AthenaEnv ERROR!\n%s", errMsg);
         	while (!isButtonPressed(PAD_START)) {
 				clearScreen(GS_SETREG_RGBAQ(0x20,0x60,0xB0,0x80,0x00));
 				printFontMText("AthenaEnv ERROR!", 15.0f, 15.0f, 0.9f, 0x80808080);

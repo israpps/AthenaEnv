@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include "ath_env.h"
-
+#include "include/debugprintf.h"
 // if the timer is running:
 // measuredTime is the value of the last call to getCurrentMilliseconds
 // offset is the value of startTime

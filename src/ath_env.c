@@ -5,11 +5,12 @@
 #include <malloc.h>
 #include <string.h>
 #include <errno.h>
+#include "include/debugprintf.h"
 
 duk_context *ctx;
 
 void push_athena_module(duk_c_function func, const char *key){
-	printf("AthenaEnv: Pushing %s module...\n", key);
+	DPRINTF("AthenaEnv: Pushing %s module...\n", key);
 	duk_push_c_function(ctx, func, 0);
     duk_call(ctx, 0);
     duk_put_global_string(ctx, key);
@@ -236,7 +237,7 @@ static duk_ret_t cb_resolve_module(duk_context *ctx) {
 	parent_id = duk_require_string(ctx, 1);
 
 	duk_push_sprintf(ctx, "%s.js", module_id);
-	printf("resolve_cb: id:'%s', parent-id:'%s', resolve-to:'%s'\n",
+	DPRINTF("resolve_cb: id:'%s', parent-id:'%s', resolve-to:'%s'\n",
 		module_id, parent_id, duk_get_string(ctx, -1));
 
 	return 1;
@@ -358,7 +359,7 @@ const char* runScript(const char* script, bool isBuffer)
 
     const char* errMsg;
 
-    printf("\nStarting AthenaEnv...\n");
+    DPRINTF("\nStarting AthenaEnv...\n");
 
   	ctx = duk_create_heap_default();
 
@@ -389,7 +390,7 @@ const char* runScript(const char* script, bool isBuffer)
 	athena_timer_init(ctx);
 	athena_task_init(ctx);
 
-    printf("AthenaEnv: top after init - %ld\n\n", (long) duk_get_top(ctx));
+    DPRINTF("AthenaEnv: top after init - %ld\n\n", (long) duk_get_top(ctx));
 
     // Run JavaScript
     if(!isBuffer){
