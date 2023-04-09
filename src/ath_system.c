@@ -11,14 +11,14 @@
 #include "include/system.h"
 
 #include "include/def_mods.h"
+#include "dprintf.h"
 
 #define MAX_DIR_FILES 512
 
 static JSValue athena_getCurrentDirectory(JSContext *ctx)
 {
-	char path[256];
-	getcwd(path, 256);
-	return JS_NewString(ctx, path);
+	dprintf("%s: (%s)\n", __func__, boot_path);
+	return JS_NewString(ctx, boot_path);
 }
 
 static JSValue athena_setCurrentDirectory(JSContext *ctx, JSValueConst *argv)
@@ -41,7 +41,7 @@ static JSValue athena_setCurrentDirectory(JSContext *ctx, JSValueConst *argv)
 	   // remove last directory ?
 	   if(!strncmp(path, "..", 2))
 	   {
-	        getcwd(temp_path, 256);
+	        strcpy(temp_path, boot_path);
 	        if ((temp_path[strlen(temp_path)-1] != ':'))
 	        {
 	           int idx = strlen(temp_path)-1;
@@ -52,17 +52,17 @@ static JSValue athena_setCurrentDirectory(JSContext *ctx, JSValueConst *argv)
 	           temp_path[idx] = '\0';
 	        }
 	        
-           }
-           // add given directory to the existing path
-           else
-           {
-	      getcwd(temp_path, 256);
-	      strcat(temp_path,"/");
-	      strcat(temp_path,path);
-	   }
         }
+           // add given directory to the existing path
+		else
+		{
+	    	strcpy(temp_path, boot_path);
+	    	strcat(temp_path,"/");
+	    	strcat(temp_path,path);
+	   	}
+    }
         
-        printf("changing directory to %s\n",__ps2_normalize_path(temp_path));
+        dprintf("changing directory to %s\n",__ps2_normalize_path(temp_path));
         chdir(__ps2_normalize_path(temp_path));
        
 	return JS_UNDEFINED;
@@ -85,8 +85,8 @@ static JSValue athena_dir(JSContext *ctx, JSValue this_val, int argc, JSValueCon
     const char *temp_path = "";
 	char path[255];
 	
-	getcwd((char *)path, 256);
-	printf("current dir %s\n",(char *)path);
+	strcpy((char *)path, boot_path);
+	dprintf("current dir %s\n",(char *)path);
 	
 	if (argc != 0) 
 	{
@@ -104,7 +104,7 @@ static JSValue athena_dir(JSContext *ctx, JSValue this_val, int argc, JSValueCon
 	}
 	
 	strcpy(path,__ps2_normalize_path(path));
-	printf("\nchecking path : %s\n",path);
+	dprintf("\nchecking path : %s\n",path);
 		
 
         
@@ -287,7 +287,7 @@ static char modulePath[256];
 
 static void setModulePath()
 {
-	getcwd( modulePath, 256 );
+	strcpy(modulePath, boot_path);
 }
 
 static JSValue athena_sleep(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv)
@@ -508,7 +508,7 @@ static JSValue athena_checkValidDisc(JSContext *ctx, JSValue this_val, int argc,
 		case SCECdIllegalMedia:
 			result = 0;
 	}
-	printf("Valid Disc: %d\n",result);
+	dprintf("Valid Disc: %d\n",result);
 	return JS_NewInt32(ctx, result);
 }
 
@@ -534,7 +534,7 @@ static JSValue athena_getDiscType(JSContext *ctx, JSValue this_val, int argc, JS
         for (iz = 0; DiscTypes[iz].name[0]; iz++)
             if (DiscTypes[iz].type == discType)
                 DiscType_ix = iz;
-    printf("getDiscType: %d\n",DiscTypes[DiscType_ix].value);
+    dprintf("getDiscType: %d\n",DiscTypes[DiscType_ix].value);
     return JS_NewInt32(ctx, DiscTypes[DiscType_ix].value); //return the value itself to Lua stack
 }
 

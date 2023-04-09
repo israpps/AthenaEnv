@@ -5,6 +5,7 @@
 #include <errno.h>
 
 #include "ath_env.h"
+#include "dprintf.h"
 
 #define TRUE 1
 
@@ -15,7 +16,7 @@ JSModuleDef *athena_push_module(JSContext* ctx, JSModuleInitFunc *func, const JS
         return NULL;
     JS_AddModuleExportList(ctx, m, func_list, len);
 
-	printf("AthenaEnv: %s module pushed at 0x%x\n", module_name, m);
+	dprintf("AthenaEnv: %s module pushed at 0x%x\n", module_name, m);
     return m;
 }
 
@@ -236,6 +237,17 @@ static JSContext *JS_NewCustomContext(JSRuntime *rt)
     /* system modules */
     js_init_module_std(ctx, "std");
     js_init_module_os(ctx, "os");
+    return ctx;
+}
+
+const char* runScript(const char* script, bool isBuffer)
+{
+    const char *qjserr = "[qjs error]";
+    dprintf("\nStarting AthenaEnv...\n");
+    JSRuntime *rt = JS_NewRuntime(); if (!rt) { return qjserr; }
+    js_std_set_worker_new_context_func(JS_NewCustomContext);
+    js_std_init_handlers(rt);
+    JSContext *ctx = JS_NewCustomContext(rt); if (!ctx) { return qjserr; }
 
 	athena_system_init(ctx);
 	athena_archive_init(ctx);
@@ -254,6 +266,7 @@ static JSContext *JS_NewCustomContext(JSRuntime *rt)
 	athena_network_init(ctx);
 	athena_socket_init(ctx);
 	athena_font_init(ctx);
+	dprintf("Finished loading all the modules!\n");
 
     return ctx;
 }
@@ -269,7 +282,6 @@ const char* runScript(const char* script, bool isBuffer)
     JSContext *ctx = JS_NewCustomContext(rt); if (!ctx) { return "Context creation"; }
 
     int s = qjs_handle_file(ctx, script, NULL);
-
     if (s < 0) { 
 		JSValue exception_val = JS_GetException(ctx);
 		const char* exception = JS_ToCString(ctx, exception_val);
@@ -284,12 +296,16 @@ const char* runScript(const char* script, bool isBuffer)
 
 		js_std_free_handlers(rt);
 		JS_FreeContext(ctx);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
 		JS_FreeRuntime(rt);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
 		return error_buf; 
 	}
 	
 	js_std_free_handlers(rt);
 	JS_FreeContext(ctx);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
 	JS_FreeRuntime(rt);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     return NULL;
 }

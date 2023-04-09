@@ -32,12 +32,14 @@ EE_BIN = athena.elf
 EE_BIN_PKD = athena_pkd.elf
 
 RESET_IOP = 1
+DEBUG ?= 1
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ -lmc -lpad -laudsrv -lpatches -ldebug -lmath3d -ljpeg -lfreetype -lgskit_toolkit -lgskit -ldmakit -lpng -lz -lelf-loader -lds34bt -lds34usb -lnetman -lps2ip -lcurl -lwolfssl -lkbd -lmouse -lvorbisfile -lvorbis -logg -llzma -lzip
+EE_LIBS += -lsior -lsiocookie
 
 EE_INCS += -I$(PS2DEV)/gsKit/include -I$(PS2SDK)/ports/include -I$(PS2SDK)/ports/include/freetype2 -I$(PS2SDK)/ports/include/zlib
 
-EE_INCS += -Imodules/ds34bt/ee -Imodules/ds34usb/ee
+EE_INCS += -Imodules/ds34bt/ee -Imodules/ds34usb/ee -Isrc/include
 
 EE_CFLAGS += -Wno-sign-compare -fno-strict-aliasing -fno-exceptions -DPS2IP_DNS -DCONFIG_VERSION=\"$(shell cat VERSION)\" -D__TM_GMTOFF=tm_gmtoff -DPATH_MAX=256 -DEMSCRIPTEN
 
@@ -54,7 +56,7 @@ BIN2S = $(PS2SDK)/bin/bin2s
 EXT_LIBS = modules/ds34usb/ee/libds34usb.a modules/ds34bt/ee/libds34bt.a
 
 APP_CORE = src/main.o src/module_system.o src/taskman.o src/pad.o src/graphics.o src/atlas.o src/fntsys.o src/sound.o \
-		   src/system.o src/render.o src/calc_3d.o
+		   src/system.o src/render.o src/calc_3d.o src/sioprintf.o src/strUtils.o
 
 ATHENA_MODULES = src/quickjs/cutils.o src/quickjs/libbf.o src/quickjs/libregexp.o src/quickjs/libunicode.o \
 				 src/quickjs/realpath.o src/quickjs/quickjs.o src/quickjs/quickjs-libc.o \
@@ -65,11 +67,30 @@ ATHENA_MODULES = src/quickjs/cutils.o src/quickjs/libbf.o src/quickjs/libregexp.
 IOP_MODULES = src/iomanx.o src/filexio.o src/sio2man.o src/mcman.o src/mcserv.o src/padman.o src/libsd.o  \
 			  src/usbd.o src/audsrv.o src/bdm.o src/bdmfs_fatfs.o src/usbmass_bd.o src/cdfs.o src/ds34bt.o \
 			  src/ds34usb.o src/NETMAN.o src/SMAP.o src/ps2kbd.o src/ps2mouse.o src/freeram.o src/ps2dev9.o \
-			  src/mtapman.o src/poweroff.o src/ps2atad.o src/ps2hdd.o src/ps2fs.o
+			  src/mtapman.o src/poweroff.o src/ps2atad.o src/ps2hdd.o src/ps2fs.o src/tty2sior.o
 
 EE_OBJS = $(IOP_MODULES) $(APP_CORE) $(ATHENA_MODULES)
 
+
+#all must be the first recipe. otherwise inputting `make` wont build the program
+all: $(EXT_LIBS) $(EE_BIN)
+	@echo "$$HEADER"
+
+	echo "Building $(EE_BIN)..."
+	$(EE_STRIP) $(EE_BIN)
+
+	echo "Compressing $(EE_BIN_PKD)...\n"
+	ps2-packer $(EE_BIN) $(EE_BIN_PKD) > /dev/null
+	
+	mv $(EE_BIN) bin/
+	mv $(EE_BIN_PKD) bin/
+
+
+
 #-------------------- Embedded IOP Modules ------------------------#
+src/tty2sior.s: modules/tty2sior.irx
+	$(BIN2S) $< $@ tty2sior_irx
+
 src/iomanx.s: $(PS2SDK)/iop/irx/iomanX.irx
 	echo "Embedding iomanX Driver..."
 	$(BIN2S) $< $@ iomanX_irx
@@ -195,18 +216,6 @@ src/ps2mouse.s: $(PS2SDK)/iop/irx/ps2mouse.irx
 	$(BIN2S) $< $@ ps2mouse_irx
 	
 #-------------------------- App Content ---------------------------#
-
-all: $(EXT_LIBS) $(EE_BIN)
-	@echo "$$HEADER"
-
-	echo "Building $(EE_BIN)..."
-	$(EE_STRIP) $(EE_BIN)
-
-	echo "Compressing $(EE_BIN_PKD)...\n"
-	ps2-packer $(EE_BIN) $(EE_BIN_PKD) > /dev/null
-	
-	mv $(EE_BIN) bin/
-	mv $(EE_BIN_PKD) bin/
 
 debug: $(EXT_LIBS) $(EE_BIN)
 	echo "Building $(EE_BIN) with debug symbols..."

@@ -6,6 +6,7 @@
 
 #include "include/graphics.h"
 #include "ath_env.h"
+#include "dprintf.h"
 
 static JSClassID js_imagelist_class_id;
 
@@ -126,6 +127,6 @@ JSModuleDef *athena_imagelist_init(JSContext *ctx)
         return NULL;
     JS_AddModuleExport(ctx, m, "ImageList");
 
-    printf("AthenaEnv: %s module pushed at 0x%x\n", "ImageList", m);
+    dprintf("AthenaEnv: %s module pushed at 0x%x\n", "ImageList", m);
     return m;
 }

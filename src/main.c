@@ -6,10 +6,18 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 
+#include <hdd-ioctl.h>
+#include <sior_rpc.h>
 #include "include/def_mods.h"
 
 #include "ath_env.h"
 #include "include/graphics.h"
+#include "include/strUtils.h"
+#include "dprintf.h"
+
+#define NEWLIB_PORT_AWARE
+#include <fileXio_rpc.h>
+#include <fileio.h>
 
 char boot_path[255];
 bool dark_mode;
@@ -31,20 +39,35 @@ bool hdd_started = false;
 bool filexio_started = false;
 
 void prepare_IOP() {
-    printf("AthenaEnv: Starting IOP Reset...\n");
+    dprintf("AthenaEnv: Starting IOP Reset...\n");
     SifInitRpc(0);
     #if defined(RESET_IOP)  
     while (!SifIopReset("", 0)){};
     #endif
     while (!SifIopSync()){};
     SifInitRpc(0);
-    printf("AthenaEnv: IOP reset done.\n");
+    dprintf("AthenaEnv: IOP reset done.\n");
     
     // install sbv patch fix
-    printf("AthenaEnv: Installing SBV Patches...\n");
+    dprintf("AthenaEnv: Installing SBV Patches...\n");
     sbv_patch_enable_lmb();
     sbv_patch_disable_prefix_check(); 
+    dprintf("done!...\n");
 }
+
+
+static int CheckHDD(void) {
+    int ret = fileXioDevctl("hdd0:", HDIOC_STATUS, NULL, 0, NULL, 0);
+    /* 0 = HDD connected and formatted, 1 = not formatted, 2 = HDD not usable, 3 = HDD not connected. */
+    dprintf("%s: HDD status is %d\n", __func__, ret);
+    if ((ret >= 3) || (ret < 0))
+        return -1;
+    return ret;
+}
+
+#define MODULE_LOAD_SUCCESS() (ID >= 0 && ret == 0)
+#define IRX_REPORT(MODULE) dprintf(" [%s.IRX]: ID=%d, ret=%d\n", MODULE, ID, ret)
+
 
 static void init_drivers() {
     SifExecModuleBuffer(&poweroff_irx, size_poweroff_irx, 0, NULL, NULL);
@@ -62,6 +85,40 @@ static void init_drivers() {
     // SifExecModuleBuffer(&mtapman_irx, size_mtapman_irx, 0, NULL, NULL);
     // mtapInit();
 
+
+    if (filexio_loaded)
+    {
+        int HDDSTAT;
+        static const char hddarg[] = "-o" "\0" "4" "\0" "-n" "\0" "20";
+        static const char pfsarg[] = "-m" "\0" "4" "\0" "-o" "\0" "10" "\0" "-n" "\0" "40";
+    	//static const char pfsarg[] = "-n\0" "24\0" "-o\0" "8";
+
+        /* PS2DEV9.IRX */
+        ID = SifExecModuleBuffer(&ps2dev9_irx, size_ps2dev9_irx, 0, NULL, &ret);
+        IRX_REPORT("DEV9");
+        dev9_started = MODULE_LOAD_SUCCESS();
+
+        /* PS2ATAD.IRX */
+        ID = SifExecModuleBuffer(&ps2atad_irx, size_ps2atad_irx, 0, NULL, &ret);
+        IRX_REPORT("ATAD");
+
+        /* PS2HDD.IRX */
+        ID = SifExecModuleBuffer(&ps2hdd_irx, size_ps2hdd_irx, sizeof(hddarg), hddarg, &ret);
+        IRX_REPORT("PS2HDD");
+
+        /* Check if HDD is formatted and ready to be used */
+        HDDSTAT = CheckHDD();
+        HDD_USABLE = (HDDSTAT == 0 || HDDSTAT == 1); // ONLY if HDD is usable. as we will offer HDD Formatting operation
+
+        /* PS2FS.IRX */
+        if (HDD_USABLE)
+        {
+            ID = SifExecModuleBuffer(&ps2fs_irx, size_ps2fs_irx, sizeof(pfsarg), pfsarg,  &ret);
+            IRX_REPORT("PS2FS");
+            hdd_started = MODULE_LOAD_SUCCESS();
+        }
+
+    }
 }
 
 bool waitUntilDeviceIsReady(char *path) {
@@ -81,11 +138,33 @@ bool waitUntilDeviceIsReady(char *path) {
 }
 
 int main(int argc, char **argv) {
+    char MountPoint[32+6+1]; // max partition name + "hdd0:/" + "\0" 
+    char newCWD[255];
+    DPRINTF_INIT();
     prepare_IOP();
+    //SIOR_Init(0x21);
     init_drivers();
     
     getcwd(boot_path, sizeof(boot_path));
+    if ((!strncmp(boot_path, "hdd0:", 5)) && (strstr(boot_path, ":pfs:") != NULL)) // hdd path found
+    {
+        dprintf("boot path is on HDD...\n");
+        if (getMountInfo(boot_path, NULL, MountPoint, newCWD)) // see if we can parse it
+        {
+            if (mnt(MountPoint, 0, FIO_MT_RDWR)==0) //mount the partition
+            {
+                strncpy(boot_path, newCWD, 255); // replace boot path with mounted pfs path
+
+#ifdef RESERVE_PFS0
+                bootpath_is_on_HDD = 1;
+#endif
+            }
+
+        }
+    }
+    dprintf("CWD: %s\n", boot_path);
     waitUntilDeviceIsReady(boot_path);
+    mnt("hdd0:__net", 1, FIO_MT_RDWR);
     
     init_taskman();
 	init_graphics();
@@ -146,4 +225,29 @@ int main(int argc, char **argv) {
 	// End program.
 	return 0;
 
+}
+
+int mnt(const char* path, int index, int openmod)
+{
+    char PFS[5+1] = "pfs0:";
+    if (index > 0)
+        PFS[3] = '0' + index;
+
+    dprintf("Mounting '%s' into pfs%d:\n", path, index);
+    if (fileXioMount(PFS, path, openmod) < 0) // mount
+    {
+        dprintf("Mount failed. unmounting trying again...\n");
+        if (fileXioUmount(PFS) < 0) //try to unmount then mount again in case it got mounted by something else
+        {
+            dprintf("Unmount failed!!!\n");
+        }
+        if (fileXioMount(PFS, path, openmod) < 0)
+        {
+            dprintf("mount failed again!\n");
+            return -1;
+        } else {
+            dprintf("Second mount succed!\n");
+        }
+    } else dprintf("mount successfull on first attemp\n");
+    return 0;
 }

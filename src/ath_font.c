@@ -8,6 +8,7 @@
 #include "include/graphics.h"
 #include "include/fntsys.h"
 #include "ath_env.h"
+#include "dprintf.h"
 
 const uint32_t osdsys_font = 0;
 const uint32_t image_font = 1;
@@ -47,7 +48,7 @@ static JSValue athena_font_ctor(JSContext *ctx, JSValueConst new_target, int arg
 
     if (argc == 1) {
         const char* path = JS_ToCString(ctx, argv[0]);
-        printf("%s\n", path);
+        dprintf("%s\n", path);
         font->id = fntLoadFile(path);
         font->type = truetype_font;
 
@@ -178,17 +179,25 @@ static int font_init(JSContext *ctx, JSModuleDef *m) {
     JSValue font_proto, font_class;
     
     /* create the Point class */
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_NewClassID(&js_font_class_id);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_NewClass(JS_GetRuntime(ctx), js_font_class_id, &js_font_class);
 
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     font_proto = JS_NewObject(ctx);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_SetPropertyFunctionList(ctx, font_proto, js_font_proto_funcs, countof(js_font_proto_funcs));
     
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     font_class = JS_NewCFunction2(ctx, athena_font_ctor, "Font", 2, JS_CFUNC_constructor, 0);
     /* set proto.constructor and ctor.prototype */
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_SetConstructor(ctx, font_class, font_proto);
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_SetClassProto(ctx, js_font_class_id, font_proto);
                       
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_SetModuleExport(ctx, m, "Font", font_class);
 
     fntInit();
@@ -198,9 +207,11 @@ static int font_init(JSContext *ctx, JSModuleDef *m) {
 JSModuleDef *athena_font_init(JSContext *ctx)
 {
     JSModuleDef *m;
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     m = JS_NewCModule(ctx, "Font", font_init);
     if (!m)
         return NULL;
+    dprintf("%s: [%d]\n", __func__, __LINE__);
     JS_AddModuleExport(ctx, m, "Font");
     return m;
 }

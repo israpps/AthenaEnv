@@ -84,8 +84,9 @@ irx_define(freeram);
 irx_define(ds34bt);
 irx_define(ds34usb);
 irx_define(poweroff);
+IRX_DEFINE(tty2sior);
+
 
 int get_boot_device(const char* path);
 
 int load_default_module(int id);
-
