@@ -10,6 +10,8 @@
 #include "include/taskman.h"
 #include "include/graphics.h"
 
+extern bool dark_mode;
+
 typedef struct {
 	const char* path;
     GSTEXTURE tex;
@@ -38,22 +40,6 @@ JSClassID get_imglist_class_id();
 #define countof(x) (sizeof(x) / sizeof((x)[0]))
 
 extern char boot_path[255];
-
-extern bool kbd_started;
-extern bool mouse_started;
-extern bool freeram_started;
-extern bool ds34bt_started;
-extern bool ds34usb_started;
-extern bool network_started;
-extern bool sio2man_started;
-extern bool usbd_started;
-extern bool usb_mass_started;
-extern bool pads_started;
-extern bool audio_started;
-extern bool cdfs_started;
-extern bool dev9_started;
-extern bool mc_started;
-extern bool hdd_started;
 
 void poweroffHandler(void *arg);
 void initMC();
