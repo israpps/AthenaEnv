@@ -723,11 +723,14 @@ static JSValue athena_sifloadmodule(JSContext *ctx, JSValue this_val, int argc, 
 		JS_ToInt32(ctx, &arg_len, argv[1]);
 		args = JS_ToCString(ctx, argv[2]);
 	}
-	
-	int result = SifLoadModule(path, arg_len, args);
-	return JS_NewInt32(ctx, result);
+	int result;
+	int ID = SifLoadStartModule(path, arg_len, args, &result);
+	dbgprintf("# IRX loaded from '%s': args=%d ret=%d, ID=%d", path, arg_len, result, ID);
+	JSValue obj = JS_NewObject(ctx);
+    JS_DefinePropertyValueStr(ctx, obj, "ID", JS_NewUint32(ctx, ID), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "return_value", JS_NewUint32(ctx, result), JS_PROP_C_W_E);
+	return obj;
 }
-
 
 static JSValue athena_sifloadmodulebuffer(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv){
 	if (argc != 1 && argc != 3) return JS_ThrowSyntaxError(ctx, "wrong number of arguments");
@@ -741,9 +744,14 @@ static JSValue athena_sifloadmodulebuffer(JSContext *ctx, JSValue this_val, int 
 		JS_ToInt32(ctx, &arg_len, argv[1]);
 		args = JS_ToCString(ctx, argv[2]);
 	}
+	int result = -1;
+	int ID = SifExecModuleBuffer((void*)ptr, size, arg_len, args, &result);
+	dbgprintf("# embedded IRX loaded from 0x%p: args=%d ret=%d, ID=%d", ptr, arg_len, result, ID);
 
-	int result = SifExecModuleBuffer((void*)ptr, size, arg_len, args, NULL);
-	return JS_NewInt32(ctx, result);
+	JSValue obj = JS_NewObject(ctx);
+    JS_DefinePropertyValueStr(ctx, obj, "ID", JS_NewUint32(ctx, ID), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "return_value", JS_NewUint32(ctx, result), JS_PROP_C_W_E);
+	return obj;
 }
 
 static JSValue athena_sifloaddefaultmodule(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv){

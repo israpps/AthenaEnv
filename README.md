@@ -586,8 +586,10 @@ Asynchronous functions:
 
 ### IOP module
 
-* var result = IOP.loadModule(fname, *arg_len*, *args*)
-* var result = IOP.loadModuleBuffer(mod_buf, *arg_len*, *args*)
+* var irx_result = IOP.loadModule(fname, *arg_len*, *args*)
+* var irx_result = IOP.loadModuleBuffer(mod_buf, *arg_len*, *args*)
+  • irx_result.ID  - IRX ID Number. if an error ocurred. negative value indicating error is provided here
+  • irx_result.return_value  - IRX Return value: 0: Module requested to stay resident on IOP RAM. 1: Module requested to be unloaded (Could mean an error eg: MX4SIO_BD quitting because of incompatible SIO2MAN). 2: Module requested to stay resident, but allowing module Unloading if appropiate MODLOAD is running
 * IOP.loadDefaultModule(mod_id)  
   • IOP.keyboard - USB Keyboard  
   • IOP.mouse - USB Mouse  
