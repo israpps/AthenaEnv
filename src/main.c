@@ -34,7 +34,9 @@ static void init_drivers() {
     load_default_module(MC_MODULE);
     load_default_module(USB_MASS_MODULE);
     load_default_module(CDFS_MODULE);
+#ifdef ATHENA_HDD
     load_default_module(HDD_MODULE);
+#endif
     load_default_module(PADS_MODULE);
     load_default_module(DS34BT_MODULE);
     load_default_module(DS34USB_MODULE);
@@ -85,6 +87,7 @@ int main(int argc, char **argv) {
 
     getcwd(boot_path, sizeof(boot_path));
 
+#ifdef ATHENA_HDD
     if ((!strncmp(boot_path, "hdd0:", 5)) && (strstr(boot_path, ":pfs:") != NULL) && HDD_USABLE) // we booted from HDD and our modules are loaded and running...
     {
         if (getMountInfo(boot_path, NULL, MountPoint, newCWD)) // ...if we can parse the boot path...
@@ -100,6 +103,7 @@ int main(int argc, char **argv) {
 
         }
     }
+#endif
 
     waitUntilDeviceIsReady(boot_path);
 

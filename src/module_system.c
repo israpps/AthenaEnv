@@ -10,8 +10,10 @@
 
 #define started_from(device) (strstr(path, device) == path)
 
+#ifdef ATHENA_HDD
 static const char hddarg[] = "-o" "\0" "4" "\0" "-n" "\0" "20";
 static const char pfsarg[] = "-m" "\0" "4" "\0" "-o" "\0" "10" "\0" "-n" "\0" "40";
+#endif
 
 bool kbd_started = false;
 bool mouse_started = false;
@@ -251,13 +253,16 @@ int load_default_module(int id) {
 
 			break;
 		case DEV9_MODULE:
+#ifndef NO_DEV9
 			if (!dev9_started) {
 				ID = SifExecModuleBuffer(&ps2dev9_irx, size_ps2dev9_irx, 0, NULL, &ret);
 				REPORT("DEV9");
 				dev9_started = LOAD_SUCCESS();
 			}
+#endif
 		break;
 		case HDD_MODULE:
+#ifdef ATHENA_HDD
 			if (!filexio_started)
 				load_default_module(FILEXIO_MODULE);
 			if (!dev9_started)
@@ -284,6 +289,7 @@ int load_default_module(int id) {
 				}
 				
 			}
+#endif
 			break;
 		case FILEXIO_MODULE:
 			if (!filexio_started) {

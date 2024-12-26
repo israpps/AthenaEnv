@@ -55,7 +55,8 @@ EE_INCS += -I$(PS2DEV)/gsKit/include -I$(PS2SDK)/ports/include -I$(PS2SDK)/ports
 
 EE_INCS += -Imodules/ds34bt/ee -Imodules/ds34usb/ee
 
-EE_CFLAGS += -Wno-sign-compare -fno-strict-aliasing -fno-exceptions -fpermissive -DCONFIG_VERSION=\"$(shell cat VERSION)\" -D__TM_GMTOFF=tm_gmtoff -DPATH_MAX=256 -DPS2
+EE_CFLAGS += -Wno-sign-compare -fno-strict-aliasing -fno-exceptions -DCONFIG_VERSION=\"$(shell cat VERSION)\" -D__TM_GMTOFF=tm_gmtoff -DPATH_MAX=256 -DPS2
+EE_CXX_FLAGS += -fpermissive
 ifeq ($(RESET_IOP),1)
   EE_CFLAGS += -DRESET_IOP
 endif
@@ -80,8 +81,8 @@ ATHENA_MODULES = ath_env.o ath_physics.o ath_vector.o ath_pads.o ath_system.o at
 
 IOP_MODULES = iomanx.o filexio.o sio2man.o mcman.o mcserv.o padman.o  \
 			  usbd.o bdm.o bdmfs_fatfs.o usbmass_bd.o cdfs.o ds34bt.o \
-			  ds34usb.o freeram.o ps2dev9.o mtapman.o poweroff.o ps2atad.o \
-			  ps2hdd.o ps2fs.o
+			  ds34usb.o freeram.o ps2dev9.o mtapman.o poweroff.o 
+			  
 
 EMBEDDED_ASSETS = quicksand_regular.o
 
@@ -91,6 +92,13 @@ ifeq ($(GRAPHICS),1)
   ATHENA_MODULES += ath_color.o ath_font.o ath_render.o ath_screen.o ath_image.o ath_imagelist.o ath_shape.o 
 endif
 
+
+ifeq ($(HDD),1)
+  EE_CFLAGS += -DATHENA_HDD
+#  APP_CORE += sound.o audsrv.o 
+#  ATHENA_MODULES += ath_sound.o 
+  IOP_MODULES += ps2atad.o ps2hdd.o ps2fs.o
+endif
 ifeq ($(AUDIO),1)
   EE_CFLAGS += -DATHENA_AUDIO
   APP_CORE += sound.o audsrv.o 
