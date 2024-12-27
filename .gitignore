@@ -10,3 +10,5 @@ src/main.js.c
 obj/
 embed/
 bin/brew_data.json
+ioprp.c
+*IOPRP.IMG
