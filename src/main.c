@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <stdbool.h>
+#include <iopcontrol_special.h>
 
 #include "include/memory.h"
 

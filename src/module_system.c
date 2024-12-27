@@ -2,6 +2,7 @@
 #include "include/def_mods.h"
 #include "include/dbgprintf.h"
 #include <string.h>
+#include <iopcontrol_special.h> //SifIopRebootBuffer
 
 #define NEWLIB_PORT_AWARE
 #include <fileXio_rpc.h>
@@ -31,14 +32,22 @@ bool hdd_started = false;
 bool filexio_started = false;
 bool camera_started = false;
 bool HDD_USABLE = false;
-
+#ifdef IOPRP
+extern unsigned char ioprp[];
+extern unsigned int size_ioprp;
+#endif
 void prepare_IOP() {
     dbgprintf("AthenaEnv: Starting IOP Reset...\n");
     SifInitRpc(0);
-    #if defined(RESET_IOP)  
+    #if defined(RESET_IOP)
+
+#if defined(IOPRP)
+    while (!SifIopRebootBuffer(ioprp, size_ioprp)){};
+#else
     while (!SifIopReset("", 0)){};
-    #endif
+#endif
     while (!SifIopSync()){};
+    #endif
     SifInitRpc(0);
     dbgprintf("AthenaEnv: IOP reset done.\n");
     

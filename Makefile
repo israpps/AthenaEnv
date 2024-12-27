@@ -133,6 +133,11 @@ ifneq ($(EE_SIO), 0)
   EE_LIBS += -lsiocookie
 endif
 
+ifneq (_$(IOPRP_BIN)_,__)
+ATHENA_MODULES += ioprp.o
+EE_LIBS += -liopreboot
+EE_CFLAGS += -DIOPRP
+endif
 
 EE_OBJS = $(APP_CORE) $(JS_CORE) $(ATHENA_MODULES) $(IOP_MODULES) $(EMBEDDED_ASSETS) #group them all
 EE_OBJS := $(EE_OBJS:%=$(EE_OBJS_DIR)%) #prepend the object folder
@@ -156,6 +161,13 @@ all: $(EXT_LIBS) $(EE_BIN) $(EE_ASM_DIR) $(EE_OBJS_DIR)
 #	mv $(EE_BIN_PKD) bin/
 
 #mpgs: src/draw_3D.vsm src/draw_3D_notex.vsm src/draw_3D_colors.vsm src/draw_3D_colors_notex.vsm src/draw_3D_lights.vsm src/draw_3D_lights_notex.vsm
+
+$(EE_SRC_DIR)ioprp.c: $(IOPRP_BIN)
+	bin2c $< $@ ioprp
+
+rmioprp:
+	rm -f $(IOPRP_BIN)
+
 
 debug: $(EXT_LIBS) $(EE_BIN)
 	echo "Building $(EE_BIN) with debug symbols..."
