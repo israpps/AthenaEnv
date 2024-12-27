@@ -80,8 +80,9 @@ int main(int argc, char **argv) {
     char newCWD[255];
 
     dbginit(); // if we are using serial port. initialize it here before the fun starts
-
+#ifndef ARCADE_PS2
     prepare_IOP();
+#endif
     init_drivers();
 
     getcwd(boot_path, sizeof(boot_path));
@@ -133,3 +134,10 @@ int main(int argc, char **argv) {
 }
 
 
+#ifdef ARCADE_PS2
+// this function is a weak definition of crt0.c
+// we will use to to gain code execution before newlib starts doing things that were designed with retail consoles in mind
+void _ps2sdk_memory_init() {
+    prepare_IOP(); // arcade FILEIO has different RPC, we replace it with homebrew FILEIO before libcglue tries to open ROMVER
+}
+#endif

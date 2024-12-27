@@ -91,6 +91,12 @@ ifeq ($(GRAPHICS),1)
   ATHENA_MODULES += ath_color.o ath_font.o ath_render.o ath_screen.o ath_image.o ath_imagelist.o ath_shape.o 
 endif
 
+ifeq ($(ARCADE),1)
+  EE_CFLAGS += -DARCADE_PS2
+  IOPRP_BIN = ACIOPRP.IMG
+  IOPRP_CONTENTS = $(addprefix $(PS2SDK)/iop/irx/, ioman.irx fileio.irx)
+endif
+
 ifeq ($(AUDIO),1)
   EE_CFLAGS += -DATHENA_AUDIO
   APP_CORE += sound.o audsrv.o 
