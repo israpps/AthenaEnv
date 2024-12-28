@@ -5,56 +5,52 @@ test("module test ok");
 let fr_float = Math.fround(15.6787869696);
 console.log(fr_float);
 
-IOP.loadDefaultModule(IOP.keyboard);
-Keyboard.init();
+function listgames(value) {
+  console.log("  ["+value.title+"]:["+value.dongle+"]")
+}
 
-let bg = new Image("dash/bg.png");
+//IOP.loadDefaultModule(IOP.keyboard);
+//Keyboard.init();
 
+let bg = new Image("aclauncher/bg.png");
+bg.width = 640; bg.height = 480; //bg.filter = NEAREST;
 const bg_palette = new Uint8Array(bg.palette);
 
 for (let i = 0; i < bg_palette.length; i += 4) {
-    bg_palette[i+0] = Math.trunc(bg_palette[i+0] * 0.2f);
+    bg_palette[i+0] = Math.trunc(bg_palette[i+0] * 1.2f);
     bg_palette[i+1] = Math.trunc(bg_palette[i+1] * 0.0f);
-    bg_palette[i+2] = Math.trunc(bg_palette[i+2] * 1.0f);
+    bg_palette[i+2] = Math.trunc(bg_palette[i+2] * 0.2f);
 }
 
 console.log("Image size: " + bg.size + " | bits per pixel: " + bg.bpp);
 
 const unsel_color = Color.new(255, 255, 255, 64);
-const sel_color = Color.new(255, 255, 255);
+const sel_color = Color.new(255, 255, 0);
 
 let font = new Font("fonts/LEMONMILK-Light.otf");
-let font_medium = new Font("fonts/LEMONMILK-Medium.otf");
-let font_bold = new Font("fonts/LEMONMILK-Bold.otf");
+let logfont = new Font("fonts/LEMONMILK-Light.otf");
+let font_medium = new Font("aclauncher/namco.ttf");
+let font_bold = new Font("aclauncher/namco.ttf");
 font.color = unsel_color;
-font_bold.scale = 0.7f
-font_medium.scale = 1.0f;
+font_bold.scale = 0.5f
+font_medium.scale = 0.44f;
 font.scale = 0.44f;
+logfont.scale = 0.34f;
 
 let no_icon = new Image("no_icon.png");
 
 console.log(JSON.stringify(Tasks.get()));
 
-let app_table = System.listDir().map(file => file.name).filter(str => str.endsWith(".js")).map( app => {
-    const app_fd = std.open(app, "r");
-    const metadata_str = app_fd.getline().replace("// ", "");
-    app_fd.close();
-
-    if (metadata_str[0] != "{") {
-        return {name: "%not_app%"};
-    }
-
-    let metadata = JSON.parse(metadata_str);
-
-    if (std.exists(metadata.icon)) {
-        metadata.icon = new Image(metadata.icon);
-    } else {
-        metadata.icon = no_icon;
-    }
-
-    return metadata;
-} ).filter(gen_app => gen_app.name != "%not_app%");
-
+let file = std.open("aclauncher/246.json", "r");
+var gdb_246 = JSON.parse(file.readAsString());
+file.close()
+file = std.open("aclauncher/256.json", "r");
+var gdb_256 = JSON.parse(file.readAsString());
+file.close()
+console.log("246:")
+gdb_246.games.forEach(listgames);
+console.log("256:")
+gdb_256.games.forEach(listgames);
 let menu_ptr = 0;
 
 let pad = Pads.get();
@@ -71,46 +67,67 @@ const VK_RETURN = 10;
 var ee_info = System.getCPUInfo();
 
 let mem = undefined;
+const UISTATE = {
+    SYSTEMQUERY: 1,
+    GAMELIST: 2,
+};
+var CURSYSTEM = 246;
+var CUISTATE = UISTATE.SYSTEMQUERY;
 
+function colorprint(f, x, y, txt, col) {
+    var t = f.color;
+    f.color = col;
+    f.print(x, y, txt);
+    f.color = t;
+  }
+var app_table
 os.setInterval(() => {
     pad.update();
 
-    old_kbd_char = kbd_char;
-    kbd_char = Keyboard.get();
+    //old_kbd_char = kbd_char;
+    //kbd_char = Keyboard.get();
 
     Screen.clear();
 
     bg.draw(0, 0);
 
-    font_bold.print(15, 5, "Athena dash");
+    font_bold.print(20, 10, "multidongle launcher");
 
     mem = System.getMemoryStats();
 
-    font.print(15, 420, `Temp: ${System.getTemperature() === undefined? "NaN" : System.getTemperature()} C | RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
-
-    if(pad.justPressed(Pads.UP) || old_kbd_char == VK_OLD_UP && kbd_char == VK_NEW_UP) {
-        app_table.unshift(app_table.pop());
-
-    }
-
-    if(pad.justPressed(Pads.DOWN) || old_kbd_char == VK_OLD_DOWN && kbd_char == VK_NEW_DOWN){
-        app_table.push(app_table.shift());
-    }
-
-    if(pad.justPressed(Pads.CROSS) || kbd_char == VK_RETURN){
-        let bin = "athena.elf";
-        if ("bin" in app_table[0]) {
-            bin = app_table[0].bin;
+    //font.print(15, 420, `Temp: ${System.getTemperature() === undefined? "NaN" : System.getTemperature()} C | RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
+    logfont.print(15, 420, `RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
+    if(CUISTATE == UISTATE.GAMELIST) {
+        if(pad.justPressed(Pads.UP)) {
+            gdb_246.games.unshift(gdb_246.games.pop());
+        } else if(pad.justPressed(Pads.DOWN)){
+            gdb_246.games.push(gdb_246.games.shift());
+        } else if(pad.justPressed(Pads.CROSS)){
         }
-
-        System.loadELF(System.boot_path + "/" + bin, [app_table[0].file, ]); // Doing this to reset all the stuff
-    }
-
-    font_medium.print(210, 125, app_table[0].name);
-    app_table[0].icon.draw(85, 111);
-
-    for(let i = 1; i < (app_table.length < 10? app_table.length : 10); i++) {
-        font.print(210, 125+(23*i), app_table[i].name);
+        
+        colorprint(font, 60, 60, gdb_246.games[0].title, sel_color);
+        colorprint(font, 400, 400, "DongleID: "+gdb_246.games[0].dongle, sel_color);
+        //app_table[0].icon.draw(85, 111);
+    
+        for(let i = 1; i < (gdb_246.length < 14? gdb_246.length : 14); i++) {
+            font.print(60, 60+(23*i), gdb_246.games[i].title);
+        }
+    } else if (CUISTATE == UISTATE.SYSTEMQUERY) {
+        font.print(20, 30, "choose device");
+        if(pad.justPressed(Pads.LEFT)) {
+            CURSYSTEM = 246;
+            app_table = gdb_246;
+        } else if(pad.justPressed(Pads.RIGHT)){
+            CURSYSTEM = 256;
+            app_table = gdb_256;
+        } if(pad.justPressed(Pads.CROSS)){
+            CUISTATE = UISTATE.GAMELIST;
+        }
+        colorprint(font_medium, 85, 111, "system", CURSYSTEM == 246 ? sel_color : unsel_color)
+        colorprint(font_bold, 85+25, 130, "246", CURSYSTEM == 246 ? sel_color : unsel_color)
+        colorprint(font_medium, 485, 111, "system", CURSYSTEM == 256 ? sel_color : unsel_color)
+        colorprint(font_bold, 485+25, 130, "256", CURSYSTEM == 256 ? sel_color : unsel_color)
+        font.print(300, 420, `registered games: ${CURSYSTEM == 256 ? gdb_256.games.length : gdb_246.games.length}`);
     }
     
     Screen.flip();

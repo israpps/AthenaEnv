@@ -39,15 +39,14 @@ extern unsigned int size_ioprp;
 void prepare_IOP() {
     dbgprintf("AthenaEnv: Starting IOP Reset...\n");
     SifInitRpc(0);
-    #if defined(RESET_IOP)
-
+#if defined(RESET_IOP)
 #if defined(IOPRP)
     while (!SifIopRebootBuffer(ioprp, size_ioprp)){};
 #else
     while (!SifIopReset("", 0)){};
 #endif
     while (!SifIopSync()){};
-    #endif
+#endif
     SifInitRpc(0);
     dbgprintf("AthenaEnv: IOP reset done.\n");
     
