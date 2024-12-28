@@ -48,6 +48,7 @@ NETWORK ?= 1
 KEYBOARD ?= 1
 MOUSE ?= 1
 CAMERA ?= 0
+ARCADE ?= 1
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ -lmc -lpad -laudsrv -lpatches -ldebug -lmath3d -ljpeg -lfreetype -lgskit_toolkit -lgskit -ldmakit -lpng -lz -lds34bt -lds34usb -lnetman -lps2ip -lcurl -lwolfssl -lkbd -lmouse -lvorbisfile -lvorbis -logg -llzma -lzip -lfileXio -lelf-loader-nocolour -lerl
 
@@ -94,7 +95,7 @@ endif
 ifeq ($(ARCADE),1)
   EE_CFLAGS += -DARCADE_PS2
   IOPRP_BIN = ACIOPRP.IMG
-  IOPRP_CONTENTS = $(addprefix $(PS2SDK)/iop/irx/, ioman.irx fileio.irx)
+  IOPRP_CONTENTS = $(addprefix $(PS2SDK)/iop/irx/, fileio.irx ioman.irx)
 endif
 
 ifeq ($(AUDIO),1)
@@ -155,6 +156,7 @@ EE_BIN_PKD := $(EE_BIN_PKD)$(EE_EXT)
 #-------------------------- App Content ---------------------------#
 
 all: $(EXT_LIBS) $(EE_BIN) $(EE_ASM_DIR) $(EE_OBJS_DIR)
+	@echo -$^-
 	@echo "$$HEADER"
 
 	echo "Building $(EE_BIN)..."
@@ -194,6 +196,7 @@ rebuild: clean all
 
 include $(PS2SDK)/samples/Makefile.pref
 include $(PS2SDK)/samples/Makefile.eeglobal
+include $(PS2SDK)/samples/Makefile.ioprp
 include embed.make
 
 $(EE_ASM_DIR):
