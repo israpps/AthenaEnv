@@ -80,7 +80,10 @@ function colorprint(f, x, y, txt, col) {
     f.print(x, y, txt);
     f.color = t;
   }
-var app_table
+var app_table = {
+    246: gdb_246,
+    266: gdb_256,
+};
 os.setInterval(() => {
     pad.update();
 
@@ -99,14 +102,19 @@ os.setInterval(() => {
     logfont.print(15, 420, `RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
     if(CUISTATE == UISTATE.GAMELIST) {
         if(pad.justPressed(Pads.UP)) {
-            gdb_246.games.unshift(gdb_246.games.pop());
+            app_table[CURSYSTEM].games.unshift(app_table[CURSYSTEM].games.pop());
         } else if(pad.justPressed(Pads.DOWN)){
-            gdb_246.games.push(gdb_246.games.shift());
+            app_table[CURSYSTEM].games.push(app_table[CURSYSTEM].games.shift());
         } else if(pad.justPressed(Pads.CROSS)){
+        } else if(pad.justPressed(Pads.CIRCLE)){
+            CUISTATE = UISTATE.SYSTEMQUERY;
         }
         
-        colorprint(font, 60, 60, gdb_246.games[0].title, sel_color);
-        colorprint(font, 400, 400, "DongleID: "+gdb_246.games[0].dongle, sel_color);
+        colorprint(font, 60, 60, app_table[CURSYSTEM].games[0].title, sel_color);
+        colorprint(font, 420, 340, "Release: "+app_table[CURSYSTEM].games[0].date, sel_color);
+        colorprint(font, 420, 360, "Publisher: "+app_table[CURSYSTEM].games[0].publisher, sel_color);
+        colorprint(font, 420, 380, "GameID: "+app_table[CURSYSTEM].games[0].gameid, sel_color);
+        colorprint(font, 420, 400, "DongleID: "+app_table[CURSYSTEM].games[0].dongle, sel_color);
         //app_table[0].icon.draw(85, 111);
     
         for(let i = 1; i < (gdb_246.length < 14? gdb_246.length : 14); i++) {
@@ -116,10 +124,8 @@ os.setInterval(() => {
         font.print(20, 30, "choose device");
         if(pad.justPressed(Pads.LEFT)) {
             CURSYSTEM = 246;
-            app_table = gdb_246;
         } else if(pad.justPressed(Pads.RIGHT)){
             CURSYSTEM = 256;
-            app_table = gdb_256;
         } if(pad.justPressed(Pads.CROSS)){
             CUISTATE = UISTATE.GAMELIST;
         }
