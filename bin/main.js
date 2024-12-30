@@ -149,19 +149,12 @@ function DisplayGlist() {
 
 os.setInterval(() => {
     pad.update();
-
-    //old_kbd_char = kbd_char;
-    //kbd_char = Keyboard.get();
-
     Screen.clear();
-
     bg.draw(0, 0);
 
     font_bold.print(20, 10, "multidongle launcher");
 
     mem = System.getMemoryStats();
-
-    //font.print(15, 420, `Temp: ${System.getTemperature() === undefined? "NaN" : System.getTemperature()} C | RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
     logfont.print(15, 420, `RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
     if(CUISTATE == UISTATE.GAMELIST) {
         DisplayGlist();
