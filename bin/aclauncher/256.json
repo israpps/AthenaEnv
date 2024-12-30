@@ -1,324 +1,334 @@
 {
-    "games": [
-        {
-            "title": "Taiko Drum Master 9 / Taiko no Tatsujin 9",
-            "publisher": "Namco",
-            "date": "December, 2006",
-            "gameid": "NM00038",
-            "dongle": "TK91001-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 10 / Taiko no Tatsujin 10",
-            "publisher": "Namco",
-            "date": "September, 2007",
-            "gameid": "NM00041",
-            "dongle": "TK101001-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 11 / Taiko no Tatsujin 11",
-            "publisher": "Namco",
-            "date": "March, 2008",
-            "gameid": "NM00044",
-            "dongle": "T111001-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 11 Asian Version / Taiko no Tatsujin 11 A",
-            "publisher": "Namco",
-            "date": "April, 2008",
-            "gameid": "?",
-            "dongle": "T111004-NA-A ",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 12 / Taiko no Tatsujin 12",
-            "publisher": "Namco",
-            "date": "December, 2008",
-            "gameid": "NM00051",
-            "dongle": "T121001-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 12 More / Taiko no Tatsujin 12 More",
-            "publisher": "Namco",
-            "date": "July, 2009",
-            "gameid": "NM00051",
-            "dongle": "T121001-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 12 Asian Version / Taiko no Tatsujin 12 A",
-            "publisher": "Namco",
-            "date": "2009",
-            "gameid": "?",
-            "dongle": "?",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 13 / Taiko no Tatsujin 13",
-            "publisher": "Namco",
-            "date": "December, 2009",
-            "gameid": "NM00056",
-            "dongle": "T1301-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 14 / Taiko no Tatsujin 14",
-            "publisher": "Namco",
-            "date": "September, 2010",
-            "gameid": "NM00057",
-            "dongle": "T141001-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 14 More / Taiko no Tatsujin 14 More",
-            "publisher": "Namco",
-            "date": "?",
-            "gameid": "NM00057",
-            "dongle": "T141002-NA-A",
-            "compat": [0, 0, 0, 0, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-          "title": "Super Dragon Ball Z",
-          "publisher": "Namco",
-          "date": "2005",
-          "gameid": "NM00027",
-          "dongle": "DB1, Ver.B",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "NO"
-        },
-        {
-          "title": "Tekken 5",
-          "publisher": "Namco",
-          "date": "December, 2004",
-          "gameid": "NM00019",
-          "dongle": "TE5(1/2/3), Ver.A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "Tekken 5.1 Live Monitor (Jpn)",
-          "publisher": "Namco",
-          "date": "December, 2004",
-          "gameid": "NM00019",
-          "dongle": "TE5L, Ver.B",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "Tekken 5.1 - Jpn",
-          "publisher": "Namco",
-          "date": "December, 2004",
-          "gameid": "NM00019",
-          "dongle": "TE51, Ver.C3",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "Tekken 5.1 - USA",
-          "publisher": "Namco",
-          "date": "December, 2004",
-          "gameid": "NM00019",
-          "dongle": "TE5(2/3), Ver.B",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "Tekken 5: Dark Resurrection",
-          "publisher": "Namco",
-          "date": "December, 2005",
-          "gameid": "NM00026",
-          "dongle": "TED(1/2), Ver.A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "Tekken 5: Dark Resurrection Rev. B",
-          "publisher": "Namco",
-          "date": "December, 2005",
-          "gameid": "NM00026",
-          "dongle": "TED(1/2), Ver.B",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "The Battle of Yu Yu Hakusho: Dark Tournament",
-          "publisher": "Namco",
-          "date": "2006",
-          "gameid": "NM00035",
-          "dongle": "YH1, Ver.A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "NO"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.00",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.10",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.20",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.40",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.50",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.60",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.65",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "DOL165-1-ST-I",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "?",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Druaga Online: The Story of Aon 1.70",
-          "publisher": "Namco",
-          "date": "April, 2006",
-          "gameid": "NM00028",
-          "dongle": "?",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "?",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Kinnikuman: Muscle Grand Prix",
-          "publisher": "Namco",
-          "date": "2006",
-          "gameid": "NM00029",
-          "dongle": "KN1, Ver.A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "YES"
-        },
-        {
-          "title": "Kinnikuman: Muscle Grand Prix 2",
-          "publisher": "Namco",
-          "date": "2007",
-          "gameid": "NM00040",
-          "dongle": "KN2, Ver.A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Mobile Suit Gundam: Gundam vs. Gundam",
-          "publisher": "Capcom",
-          "date": "2008",
-          "gameid": "NM00043",
-          "dongle": "GVS1, Ver.A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "DVD",
-          "Gamepad": "NO"
-        },
-        {
-          "title": "Mobile Suit Gundam: Gundam vs. Gundam Next",
-          "publisher": "Capcom",
-          "date": "2009",
-          "gameid": "NM00052",
-          "dongle": "GNX1001-NA-A",
-          "compat": [0, 0, 0, 0, 1],
-          "media": "HDD",
-          "Gamepad": "NO"
-        },
-        {
-          "title": "Cobra: The Arcade",
-          "publisher": "Namco",
-          "date": "November, 2005",
-          "gameid": "NM00021",
-          "dongle": "CBR1, Ver.A",
-          "compat": [2, 2, 2, 2, 1],
-          "media": "HDD",
-          "Gamepad": "?"
-        },
-        {
-          "title": "Cobra: The Arcade Rev.B",
-          "publisher": "Namco",
-          "date": "November, 2005",
-          "gameid": "NM00021",
-          "dongle": "CBR1, Ver.B",
-          "compat": [2, 2, 2, 2, 1],
-          "media": "HDD",
-          "Gamepad": "?"
-        }
-    ]
+  "games": [
+    {
+      "title": "Cobra: The Arcade",
+      "publisher": "Namco",
+      "date": "November, 2005",
+      "gameid": "NM00021",
+      "dongle": "CBR1, Ver.A",
+      "compat": [2, 2, 2, 2, 1],
+      "media": "HDD",
+      "gamepad": false 
+    },
+    {
+      "title": "Cobra: The Arcade Rev.B",
+      "publisher": "Namco",
+      "date": "November, 2005",
+      "gameid": "NM00021",
+      "dongle": "CBR1, Ver.B",
+      "compat": [2, 2, 2, 2, 1],
+      "media": "HDD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.00",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.10",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.20",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.40",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.50",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.60",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.65",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "DOL165-1-ST-I",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "?",
+      "gamepad": false 
+    },
+    {
+      "title": "Druaga Online: The Story of Aon 1.70",
+      "publisher": "Namco",
+      "date": "April, 2006",
+      "gameid": "NM00028",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "?",
+      "gamepad": false 
+    },
+    {
+      "title": "Kinnikuman: Muscle Grand Prix",
+      "publisher": "Namco",
+      "date": "2006",
+      "gameid": "NM00029",
+      "dongle": "KN1, Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Kinnikuman: Muscle Grand Prix 2",
+      "publisher": "Namco",
+      "date": "2007",
+      "gameid": "NM00040",
+      "dongle": "KN2, Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false 
+    },
+    {
+      "title": "Mobile Suit Gundam: Gundam vs. Gundam",
+      "publisher": "Capcom",
+      "date": "2008",
+      "gameid": "NM00043",
+      "dongle": "GVS1, Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Mobile Suit Gundam: Gundam vs. Gundam Next",
+      "publisher": "Capcom",
+      "date": "2009",
+      "gameid": "NM00052",
+      "dongle": "GNX1001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Super Dragon Ball Z",
+      "publisher": "Namco",
+      "date": "2005",
+      "gameid": "NM00027",
+      "dongle": "DB1, Ver.B",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 10 / Taiko no Tatsujin 10",
+      "publisher": "Namco",
+      "date": "September, 2007",
+      "gameid": "NM00041",
+      "dongle": "TK101001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 11 / Taiko no Tatsujin 11",
+      "publisher": "Namco",
+      "date": "March, 2008",
+      "gameid": "NM00044",
+      "dongle": "T111001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 11 Asian Version / Taiko no Tatsujin 11 A",
+      "publisher": "Namco",
+      "date": "April, 2008",
+      "gameid": "?",
+      "dongle": "T111004-NA-A ",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 12 / Taiko no Tatsujin 12",
+      "publisher": "Namco",
+      "date": "December, 2008",
+      "gameid": "NM00051",
+      "dongle": "T121001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 12 Asian Version / Taiko no Tatsujin 12 A",
+      "publisher": "Namco",
+      "date": "2009",
+      "gameid": "?",
+      "dongle": "?",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 12 More / Taiko no Tatsujin 12 More",
+      "publisher": "Namco",
+      "date": "July, 2009",
+      "gameid": "NM00051",
+      "dongle": "T121001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 13 / Taiko no Tatsujin 13",
+      "publisher": "Namco",
+      "date": "December, 2009",
+      "gameid": "NM00056",
+      "dongle": "T1301-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 14 / Taiko no Tatsujin 14",
+      "publisher": "Namco",
+      "date": "September, 2010",
+      "gameid": "NM00057",
+      "dongle": "T141001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 14 More / Taiko no Tatsujin 14 More",
+      "publisher": "Namco",
+      "date": "?",
+      "gameid": "NM00057",
+      "dongle": "T141002-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 9 / Taiko no Tatsujin 9",
+      "publisher": "Namco",
+      "date": "December, 2006",
+      "gameid": "NM00038",
+      "dongle": "TK91001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Tekken 5",
+      "publisher": "Namco",
+      "date": "December, 2004",
+      "gameid": "NM00019",
+      "dongle": "TE5(1/2/3), Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Tekken 5.1 - Jpn",
+      "publisher": "Namco",
+      "date": "December, 2004",
+      "gameid": "NM00019",
+      "dongle": "TE51, Ver.C3",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Tekken 5.1 - USA",
+      "publisher": "Namco",
+      "date": "December, 2004",
+      "gameid": "NM00019",
+      "dongle": "TE5(2/3), Ver.B",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Tekken 5.1 Live Monitor (Jpn)",
+      "publisher": "Namco",
+      "date": "December, 2004",
+      "gameid": "NM00019",
+      "dongle": "TE5L, Ver.B",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Tekken 5: Dark Resurrection",
+      "publisher": "Namco",
+      "date": "December, 2005",
+      "gameid": "NM00026",
+      "dongle": "TED(1/2), Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Tekken 5: Dark Resurrection Rev. B",
+      "publisher": "Namco",
+      "date": "December, 2005",
+      "gameid": "NM00026",
+      "dongle": "TED(1/2), Ver.B",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "The Battle of Yu Yu Hakusho: Dark Tournament",
+      "publisher": "Namco",
+      "date": "2006",
+      "gameid": "NM00035",
+      "dongle": "YH1, Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Time Crisis 4",
+      "publisher": "Namco",
+      "date": "June, 2006",
+      "gameid": "NM00032",
+      "dongle": "TSF1002-NA-A",
+      "compat": [0, 0, 0, 0, 2],
+      "media": "HDD",
+      "gamepad": false 
+    }
+  ]
 }

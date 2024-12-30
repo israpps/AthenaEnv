@@ -1,519 +1,499 @@
 {
-    "games": [
-        {
-            "title": "Battle Gear 3",
-            "publisher": "Taito",
-            "date": "2002",
-            "gameid": "NM00010",
-            "dongle": "B3900065A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Battle Gear 3",
-            "publisher": "Taito",
-            "date": "2002",
-            "gameid": "NM00010",
-            "dongle": "B3900065A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Battle Gear 3: Tuned",
-            "publisher": "Taito",
-            "date": "2003",
-            "gameid": "NM00015",
-            "dongle": "B3900074A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Battle Gear 3: Tuned Rev.B\n",
-            "publisher": "Taito",
-            "date": "2003",
-            "gameid": "NM00015",
-            "dongle": "B3900074B",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Battle Gear 3: Tuned Rev.C\n",
-            "publisher": "Taito",
-            "date": "2003",
-            "gameid": "NM00015",
-            "dongle": "B3900074C",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Bloody Roar 3",
-            "publisher": "Namco",
-            "date": "December, 2000",
-            "gameid": "NM00002",
-            "dongle": "BRT1, Ver.A",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "YES"
-        },
-        {
-            "title": "Capcom Fighting Jam",
-            "publisher": "Capcom",
-            "date": "2004",
-            "gameid": "NM00018",
-            "dongle": "JAM1, Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Dragon Chronicle: Legend of the Master Ark",
-            "publisher": "Namco",
-            "date": "2002",
-            "gameid": "NM00014",
-            "dongle": "DGC11, Ver.A1",
-            "compat": [2, 2, 1, 2, 2],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Dragon Chronicle: Online",
-            "publisher": "Namco",
-            "date": "2004",
-            "gameid": "NM00020",
-            "dongle": "DCO01, Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Fate/Unlimited Codes",
-            "publisher": "Capcom",
-            "date": "2008",
-            "gameid": "NM00048",
-            "dongle": "FUD1, Ver.A",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "The iDOLM@STER",
-            "publisher": "Namco",
-            "date": "July, 2005",
-            "gameid": "NM00022",
-            "dongle": "IDMS1, Ver.A",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "The iDOLM@STER Rev.D",
-            "publisher": "Namco",
-            "date": "July, 2005",
-            "gameid": "NM00022",
-            "dongle": "IDMS1, Ver.D",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "The iDOLM@STER Rev.D Tower Software",
-            "publisher": "Namco",
-            "date": "July, 2005",
-            "gameid": "?",
-            "dongle": "IDMT1, Ver.D",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Mobile Suit Gundam Seed: Rengou vs. ZAFT",
-            "publisher": "Capcom",
-            "date": "2005",
-            "gameid": "NM00024",
-            "dongle": "SED1, Ver.A",
-            "compat": [2, 1, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Mobile Suit Gundam Seed Destiny: Rengou vs. ZAFT II",
-            "publisher": "Capcom",
-            "date": "June, 2006",
-            "gameid": "NM00034",
-            "dongle": "GSD1, Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Mobile Suit Z Gundam: AEUG vs. Titans",
-            "publisher": "Capcom",
-            "date": "December, 2003",
-            "gameid": "NM00013",
-            "dongle": "ZGA1, Ver.A",
-            "compat": [2, 1, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Mobile Suit Z Gundam: AEUG vs. Titans DX",
-            "publisher": "Capcom",
-            "date": "August, 2004",
-            "gameid": "NM00017",
-            "dongle": "ZDX1, Ver.A",
-            "246 Driving": "?",
-            "246 Rev A": "O",
-            "246 Rev B": "O",
-            "compat": [2, 1, 1, 1, 1],
-            "246 Rev C": "O",
-            "256 Rev A": "O",
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Minna de Kitaeru Zenno Training",
-            "publisher": "Namco",
-            "date": "December, 2006",
-            "gameid": "NM00036",
-            "dongle": "ZNT1002-ST-A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Minna de Kitaeru Zenno Training 1.50 (Disc A)",
-            "publisher": "Namco",
-            "date": "2007",
-            "gameid": "NM00036",
-            "dongle": "ZNT1002-ST-A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Minna de Kitaeru Zenno Training 1.50 (Disc B)",
-            "publisher": "Namco",
-            "date": "2007",
-            "gameid": "NM00036",
-            "dongle": "ZNT1002-ST-A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Minna de Kitaeru Zenno Training 1.60",
-            "publisher": "Namco",
-            "date": "2007",
-            "gameid": "NM00036",
-            "dongle": "ZNT1002-ST-A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Netchuu Pro Yakyuu 2002 Rev.B",
-            "publisher": "Namco",
-            "date": "2002",
-            "gameid": "NM00009",
-            "dongle": "NPY, Ver.B",
-            "compat": [2, 2, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Netchuu Pro Yakyuu 2002 Rev.C",
-            "publisher": "Namco",
-            "date": "2002",
-            "gameid": "NM00009",
-            "dongle": "NPY1, Ver.C",
-            "compat": [2, 2, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Pride GP 2003",
-            "publisher": "Capcom",
-            "date": "2003",
-            "gameid": "NM00011",
-            "dongle": "PR21, Ver.A",
-            "compat": [2, 2, 2, 1, 2],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Quiz Kidou Senshi Gundam: Tou Senshi",
-            "publisher": "Namco",
-            "date": "2006",
-            "gameid": "NM00030",
-            "dongle": "QG1, Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Ridge Racer V: Arcade Battle",
-            "publisher": "Namco",
-            "date": "2000",
-            "gameid": "NM00001",
-            "dongle": "RRV(1/2/3), Ver.A",
-            "compat": [1, 1, 1, 1, 2],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Ridge Racer V: Arcade Battle Rev. B",
-            "publisher": "Namco",
-            "date": "2000",
-            "gameid": "NM00001",
-            "dongle": "RRV(2/3), Ver.B",
-            "compat": [1, 1, 1, 1, 2],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Sengoku Basara X",
-            "publisher": "Capcom",
-            "date": "2008",
-            "gameid": "NM00042",
-            "dongle": "BAX1, Ver.A",
-            "compat": [2, 1, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Smash Court Pro Tournament",
-            "publisher": "Namco",
-            "date": "2001",
-            "gameid": "NM00006",
-            "dongle": "SCP1, Ver.A",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Soul Calibur II",
-            "publisher": "Namco",
-            "date": "July, 2002",
-            "gameid": "NM00007",
-            "dongle": "SC2(1/3), Ver.A",
-            "compat": [2, 1, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "YES"
-        },
-        {
-            "title": "Soul Calibur II Rev. B",
-            "publisher": "Namco",
-            "date": "July, 2002",
-            "gameid": "NM00007",
-            "dongle": "SC2(1/3), Ver.A",
-            "compat": [2, 1, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "YES"
-        },
-        {
-            "title": "Soul Calibur II Rev. D",
-            "publisher": "Namco",
-            "date": "July, 2002",
-            "gameid": "NM00007",
-            "dongle": "SC2(1/3), Ver.D",
-            "compat": [2, 1, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "YES"
-        },
-        {
-            "title": "Soul Calibur III: Arcade Edition",
-            "publisher": "Namco",
-            "date": "2006",
-            "gameid": "NM00031",
-            "dongle": "SC31001-NA-A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "YES"
-        },
-        {
-            "title": "Soul Calibur III: Arcade Edition Rev. B",
-            "publisher": "Namco",
-            "date": "2006",
-            "gameid": "NM00031",
-            "dongle": "SC31001-NA-A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "YES"
-        },
-        {
-            "title": "Quiz & Variety SukuSuku Inufuku 2: More SukuSuku",
-            "publisher": "Hamster",
-            "date": "2007",
-            "gameid": "NM00037",
-            "dongle": "IN2, Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "CD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 7 / Taiko no Tatsujin 7",
-            "publisher": "Namco",
-            "date": "September, 2005",
-            "gameid": "NM00023",
-            "dongle": "TK71, Ver.A",
-            "compat": [2, 2, 2, 2, 2],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Taiko Drum Master 8 / Taiko no Tatsujin 8",
-            "publisher": "Namco",
-            "date": "March, 2006",
-            "gameid": "NM00033",
-            "dongle": "TK81001-NA-A",
-            "compat": [2, 2, 2, 2, 2],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Technic Beat",
-            "publisher": "Arika",
-            "date": "2002",
-            "gameid": "NM00003",
-            "dongle": "TNB1, Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Tekken 4",
-            "publisher": "Namco",
-            "date": "July, 2001",
-            "gameid": "NM00004",
-            "dongle": "TEF(1/2/3), Ver.A",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Tekken 4 Rev. B2",
-            "publisher": "Namco",
-            "date": "July, 2001",
-            "gameid": "NM00004",
-            "dongle": "TEF(1/2/3), Ver.B2",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Tekken 4 Rev. C",
-            "publisher": "Namco",
-            "date": "July, 2001",
-            "gameid": "NM00004",
-            "dongle": "TEF(1/2/3), Ver.C",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Tekken 4 Rev. D",
-            "publisher": "Namco",
-            "date": "July, 2001",
-            "gameid": "NM00004",
-            "dongle": "TEF(1/2/3), Ver.D",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "DVD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Time Crisis 3",
-            "publisher": "Namco",
-            "date": "2002",
-            "gameid": "NM00012",
-            "dongle": "TST(1/3), Ver.A",
-            "compat": [2, 2, 1, 1, 1],
-            "media": "DVD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Time Crisis 4",
-            "publisher": "Namco",
-            "date": "June, 2006",
-            "gameid": "NM00032",
-            "dongle": "TSF1002-NA-A",
-            "compat": [0, 0, 0, 0, 2],
-            "media": "HDD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Vampire Night",
-            "publisher": "Namco/Sega",
-            "date": "2000",
-            "gameid": "NM00003",
-            "dongle": "VPN2, Ver.B",
-            "compat": [2, 1, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Wangan Midnight",
-            "publisher": "Namco",
-            "date": "2001",
-            "gameid": "NM00008",
-            "dongle": "WMN2, Ver.A",
-            "compat": [1, 2, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Wangan Midnight Rev. B",
-            "publisher": "Namco",
-            "date": "2001",
-            "gameid": "NM00008",
-            "dongle": "WMN2, Ver.B",
-            "compat": [1, 2, 1, 1, 0],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Wangan Midnight R",
-            "publisher": "Namco",
-            "date": "2002",
-            "gameid": "NM00005",
-            "dongle": "WMR1, Ver.A",
-            "compat": [1, 2, 2, 2, 2],
-            "media": "CD",
-            "Gamepad": "?"
-        },
-        {
-            "title": "Zoids Infinity ",
-            "publisher": "Taito",
-            "date": "2004",
-            "gameid": "NM00016",
-            "dongle": "B3900076A",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Zoids Infinity Ex",
-            "publisher": "Taito",
-            "date": "2005",
-            "gameid": "NM00025",
-            "dongle": "B3900098B",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        },
-        {
-            "title": "Zoids Infinity Ex Plus",
-            "publisher": "Taito",
-            "date": "2006",
-            "gameid": "NM00025",
-            "dongle": "B3900107A",
-            "compat": [2, 2, 2, 1, 1],
-            "media": "HDD",
-            "Gamepad": "NO"
-        }
-    ]
+  "games": [
+    {
+      "title": "Battle Gear 3",
+      "publisher": "Taito",
+      "date": "2002",
+      "gameid": "NM00010",
+      "dongle": "B3900065A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Battle Gear 3: Tuned",
+      "publisher": "Taito",
+      "date": "2003",
+      "gameid": "NM00015",
+      "dongle": "B3900074A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Battle Gear 3: Tuned Rev.B",
+      "publisher": "Taito",
+      "date": "2003",
+      "gameid": "NM00015",
+      "dongle": "B3900074B",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Battle Gear 3: Tuned Rev.C",
+      "publisher": "Taito",
+      "date": "2003",
+      "gameid": "NM00015",
+      "dongle": "B3900074C",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Bloody Roar 3",
+      "publisher": "Namco",
+      "date": "December, 2000",
+      "gameid": "NM00002",
+      "dongle": "BRT1, Ver.A",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "CD",
+      "gamepad": true
+    },
+    {
+      "title": "Capcom Fighting Jam",
+      "publisher": "Capcom",
+      "date": "2004",
+      "gameid": "NM00018",
+      "dongle": "JAM1, Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Dragon Chronicle: Legend of the Master Ark",
+      "publisher": "Namco",
+      "date": "2002",
+      "gameid": "NM00014",
+      "dongle": "DGC11, Ver.A1",
+      "compat": [2, 2, 1, 2, 2],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Dragon Chronicle: Online",
+      "publisher": "Namco",
+      "date": "2004",
+      "gameid": "NM00020",
+      "dongle": "DCO01, Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Fate/Unlimited Codes",
+      "publisher": "Capcom",
+      "date": "2008",
+      "gameid": "NM00048",
+      "dongle": "FUD1, Ver.A",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Minna de Kitaeru Zenno Training",
+      "publisher": "Namco",
+      "date": "December, 2006",
+      "gameid": "NM00036",
+      "dongle": "ZNT1002-ST-A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Minna de Kitaeru Zenno Training 1.50 (Disc A)",
+      "publisher": "Namco",
+      "date": "2007",
+      "gameid": "NM00036",
+      "dongle": "ZNT1002-ST-A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Minna de Kitaeru Zenno Training 1.50 (Disc B)",
+      "publisher": "Namco",
+      "date": "2007",
+      "gameid": "NM00036",
+      "dongle": "ZNT1002-ST-A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Minna de Kitaeru Zenno Training 1.60",
+      "publisher": "Namco",
+      "date": "2007",
+      "gameid": "NM00036",
+      "dongle": "ZNT1002-ST-A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Mobile Suit Gundam Seed Destiny: Rengou vs. ZAFT II",
+      "publisher": "Capcom",
+      "date": "June, 2006",
+      "gameid": "NM00034",
+      "dongle": "GSD1, Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Mobile Suit Gundam Seed: Rengou vs. ZAFT",
+      "publisher": "Capcom",
+      "date": "2005",
+      "gameid": "NM00024",
+      "dongle": "SED1, Ver.A",
+      "compat": [2, 1, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Mobile Suit Z Gundam: AEUG vs. Titans",
+      "publisher": "Capcom",
+      "date": "December, 2003",
+      "gameid": "NM00013",
+      "dongle": "ZGA1, Ver.A",
+      "compat": [2, 1, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Mobile Suit Z Gundam: AEUG vs. Titans DX",
+      "publisher": "Capcom",
+      "date": "August, 2004",
+      "gameid": "NM00017",
+      "dongle": "ZDX1, Ver.A",
+      "246 Driving": "?",
+      "246 Rev A": "O",
+      "246 Rev B": "O",
+      "compat": [2, 1, 1, 1, 1],
+      "246 Rev C": "O",
+      "256 Rev A": "O",
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Netchuu Pro Yakyuu 2002 Rev.B",
+      "publisher": "Namco",
+      "date": "2002",
+      "gameid": "NM00009",
+      "dongle": "NPY, Ver.B",
+      "compat": [2, 2, 1, 1, 0],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Netchuu Pro Yakyuu 2002 Rev.C",
+      "publisher": "Namco",
+      "date": "2002",
+      "gameid": "NM00009",
+      "dongle": "NPY1, Ver.C",
+      "compat": [2, 2, 1, 1, 0],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Pride GP 2003",
+      "publisher": "Capcom",
+      "date": "2003",
+      "gameid": "NM00011",
+      "dongle": "PR21, Ver.A",
+      "compat": [2, 2, 2, 1, 2],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Quiz & Variety SukuSuku Inufuku 2: More SukuSuku",
+      "publisher": "Hamster",
+      "date": "2007",
+      "gameid": "NM00037",
+      "dongle": "IN2, Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Quiz Kidou Senshi Gundam: Tou Senshi",
+      "publisher": "Namco",
+      "date": "2006",
+      "gameid": "NM00030",
+      "dongle": "QG1, Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Ridge Racer V: Arcade Battle",
+      "publisher": "Namco",
+      "date": "2000",
+      "gameid": "NM00001",
+      "dongle": "RRV(1/2/3), Ver.A",
+      "compat": [1, 1, 1, 1, 2],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Ridge Racer V: Arcade Battle Rev. B",
+      "publisher": "Namco",
+      "date": "2000",
+      "gameid": "NM00001",
+      "dongle": "RRV(2/3), Ver.B",
+      "compat": [1, 1, 1, 1, 2],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Sengoku Basara X",
+      "publisher": "Capcom",
+      "date": "2008",
+      "gameid": "NM00042",
+      "dongle": "BAX1, Ver.A",
+      "compat": [2, 1, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Smash Court Pro Tournament",
+      "publisher": "Namco",
+      "date": "2001",
+      "gameid": "NM00006",
+      "dongle": "SCP1, Ver.A",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Soul Calibur II",
+      "publisher": "Namco",
+      "date": "July, 2002",
+      "gameid": "NM00007",
+      "dongle": "SC2(1/3), Ver.A",
+      "compat": [2, 1, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Soul Calibur II Rev. B",
+      "publisher": "Namco",
+      "date": "July, 2002",
+      "gameid": "NM00007",
+      "dongle": "SC2(1/3), Ver.A",
+      "compat": [2, 1, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Soul Calibur II Rev. D",
+      "publisher": "Namco",
+      "date": "July, 2002",
+      "gameid": "NM00007",
+      "dongle": "SC2(1/3), Ver.D",
+      "compat": [2, 1, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Soul Calibur III: Arcade Edition",
+      "publisher": "Namco",
+      "date": "2006",
+      "gameid": "NM00031",
+      "dongle": "SC31001-NA-A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Soul Calibur III: Arcade Edition Rev. B",
+      "publisher": "Namco",
+      "date": "2006",
+      "gameid": "NM00031",
+      "dongle": "SC31001-NA-A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": true
+    },
+    {
+      "title": "Taiko Drum Master 7 / Taiko no Tatsujin 7",
+      "publisher": "Namco",
+      "date": "September, 2005",
+      "gameid": "NM00023",
+      "dongle": "TK71, Ver.A",
+      "compat": [2, 2, 2, 2, 2],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Taiko Drum Master 8 / Taiko no Tatsujin 8",
+      "publisher": "Namco",
+      "date": "March, 2006",
+      "gameid": "NM00033",
+      "dongle": "TK81001-NA-A",
+      "compat": [2, 2, 2, 2, 2],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Technic Beat",
+      "publisher": "Arika",
+      "date": "2002",
+      "gameid": "NM00003",
+      "dongle": "TNB1, Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Tekken 4",
+      "publisher": "Namco",
+      "date": "July, 2001",
+      "gameid": "NM00004",
+      "dongle": "TEF(1/2/3), Ver.A",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Tekken 4 Rev. B2",
+      "publisher": "Namco",
+      "date": "July, 2001",
+      "gameid": "NM00004",
+      "dongle": "TEF(1/2/3), Ver.B2",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Tekken 4 Rev. C",
+      "publisher": "Namco",
+      "date": "July, 2001",
+      "gameid": "NM00004",
+      "dongle": "TEF(1/2/3), Ver.C",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Tekken 4 Rev. D",
+      "publisher": "Namco",
+      "date": "July, 2001",
+      "gameid": "NM00004",
+      "dongle": "TEF(1/2/3), Ver.D",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "The iDOLM@STER",
+      "publisher": "Namco",
+      "date": "July, 2005",
+      "gameid": "NM00022",
+      "dongle": "IDMS1, Ver.A",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "The iDOLM@STER Rev.D",
+      "publisher": "Namco",
+      "date": "July, 2005",
+      "gameid": "NM00022",
+      "dongle": "IDMS1, Ver.D",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "The iDOLM@STER Rev.D Tower Software",
+      "publisher": "Namco",
+      "date": "July, 2005",
+      "gameid": "?",
+      "dongle": "IDMT1, Ver.D",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Time Crisis 3",
+      "publisher": "Namco",
+      "date": "2002",
+      "gameid": "NM00012",
+      "dongle": "TST(1/3), Ver.A",
+      "compat": [2, 2, 1, 1, 1],
+      "media": "DVD",
+      "gamepad": false
+    },
+    {
+      "title": "Vampire Night",
+      "publisher": "Namco/Sega",
+      "date": "2000",
+      "gameid": "NM00003",
+      "dongle": "VPN2, Ver.B",
+      "compat": [2, 1, 1, 1, 0],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Wangan Midnight",
+      "publisher": "Namco",
+      "date": "2001",
+      "gameid": "NM00008",
+      "dongle": "WMN2, Ver.A",
+      "compat": [1, 2, 1, 1, 0],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Wangan Midnight R",
+      "publisher": "Namco",
+      "date": "2002",
+      "gameid": "NM00005",
+      "dongle": "WMR1, Ver.A",
+      "compat": [1, 2, 2, 2, 2],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Wangan Midnight Rev. B",
+      "publisher": "Namco",
+      "date": "2001",
+      "gameid": "NM00008",
+      "dongle": "WMN2, Ver.B",
+      "compat": [1, 2, 1, 1, 0],
+      "media": "CD",
+      "gamepad": false
+    },
+    {
+      "title": "Zoids Infinity ",
+      "publisher": "Taito",
+      "date": "2004",
+      "gameid": "NM00016",
+      "dongle": "B3900076A",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Zoids Infinity Ex",
+      "publisher": "Taito",
+      "date": "2005",
+      "gameid": "NM00025",
+      "dongle": "B3900098B",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "Zoids Infinity Ex Plus",
+      "publisher": "Taito",
+      "date": "2006",
+      "gameid": "NM00025",
+      "dongle": "B3900107A",
+      "compat": [2, 2, 2, 1, 1],
+      "media": "HDD",
+      "gamepad": false
+    }
+  ]
 }
