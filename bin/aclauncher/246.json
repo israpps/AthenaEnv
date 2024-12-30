@@ -6,7 +6,7 @@
       "date": "2002",
       "gameid": "NM00010",
       "dongle": "B3900065A",
-      "compat": [2, 2, 1, 1, 1],
+      "compat": [2, 2, 1, 1, 0],
       "media": "HDD",
       "gamepad": false
     },
@@ -36,7 +36,7 @@
       "date": "2003",
       "gameid": "NM00015",
       "dongle": "B3900074C",
-      "compat": [2, 2, 1, 1, 1],
+      "compat": [0, 0, 0, 1, 0],
       "media": "HDD",
       "gamepad": false
     },
