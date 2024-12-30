@@ -71,6 +71,12 @@ const UISTATE = {
     SYSTEMQUERY: 1,
     GAMELIST: 2,
 };
+const GCOMPAT = {
+    INCOMPATIBLE: 0,
+    COMPATIBLE: 1,
+    UNKNOWN: 2,
+    HAS_ISSUES: 3,
+};
 var CURSYSTEM = 246;
 var CUISTATE = UISTATE.SYSTEMQUERY;
 
@@ -106,6 +112,7 @@ os.setInterval(() => {
         } else if(pad.justPressed(Pads.DOWN)){
             app_table[CURSYSTEM].games.push(app_table[CURSYSTEM].games.shift());
         } else if(pad.justPressed(Pads.CROSS)){
+            console.log("launch game "+app_table[CURSYSTEM].games[0].dongle)
         } else if(pad.justPressed(Pads.CIRCLE)){
             CUISTATE = UISTATE.SYSTEMQUERY;
         }
