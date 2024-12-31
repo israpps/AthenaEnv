@@ -12,3 +12,5 @@ embed/
 bin/brew_data.json
 ioprp.c
 *IOPRP.IMG
+
+!modules/_precomp/*.irx

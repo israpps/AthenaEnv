@@ -12,12 +12,10 @@ function listgames(value) {
 const unsel_color = Color.new(255, 255, 255, 64);
 const whtsol = Color.new(255, 255, 255, 128);
 const sel_color = Color.new(255, 255, 0);
-
-let s = {
-    _246: new Image("render_icon.png"),
-    _256: new Image("render_icon.png"),
-};
-let gpad = new Image("pads_icon.png"); gpad.width =64; gpad.height =64; gpad.color = sel_color;
+    
+let cab246 = new Image("render_icon.png"); cab246.filter = NEAREST;
+let cab256 = new Image("render_icon.png"); cab256.filter = NEAREST;
+let gpad = new Image("pads_icon.png"); gpad.width =64; gpad.height =64; gpad.color = sel_color; gpad.filter = NEAREST;
 let bg = new Image("aclauncher/bg.png");
 bg.width = 640; bg.height = 480; //bg.filter = NEAREST;
 const bg_palette = new Uint8Array(bg.palette);
@@ -90,21 +88,21 @@ function SysQuery() {
     font.print(20, 30, "choose device");
     if(pad.justPressed(Pads.LEFT)) {
         CURSYSTEM = 246;
-        s._246.color = sel_color;
-        s._256.color = whtsol;
+        cab246.color = sel_color;
+        cab256.color = whtsol;
     } else if(pad.justPressed(Pads.RIGHT)){
         CURSYSTEM = 256;
-        s._246.color = whtsol;
-        s._256.color = sel_color;
+        cab246.color = whtsol;
+        cab256.color = sel_color;
     } if(pad.justPressed(Pads.CROSS)){
         CUISTATE = UISTATE.GAMELIST;
     }
     colorprint(font_medium, 85, 111, "system", CURSYSTEM == 246 ? sel_color : unsel_color);
     colorprint(font_bold, 110, 130, "246", CURSYSTEM == 246 ? sel_color : unsel_color);
-    s._246.draw(85,140);
+    cab246.draw(85,140);
     colorprint(font_medium, 485, 111, "system", CURSYSTEM == 256 ? sel_color : unsel_color);
     colorprint(font_bold, 510, 130, "256", CURSYSTEM == 256 ? sel_color : unsel_color);
-    s._256.draw(485, 140);
+    cab256.draw(485, 140);
     font.print(250, 420, `registered games: ${CURSYSTEM == 256 ? gdb_256.games.length : gdb_246.games.length}`);
 }
 function DisplayGlist() {
