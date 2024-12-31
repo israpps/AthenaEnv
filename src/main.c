@@ -32,6 +32,9 @@ static void init_drivers() {
     SifExecModuleBuffer(&poweroff_irx, size_poweroff_irx, 0, NULL, NULL);
 
     load_default_module(FILEXIO_MODULE);
+#ifdef MMCE
+    load_default_module(MMCE_MODULE); //it must be loaded before MCMAN to intercept SECRMAN callback
+#endif
     load_default_module(MC_MODULE);
     load_default_module(USB_MASS_MODULE);
     load_default_module(CDFS_MODULE);

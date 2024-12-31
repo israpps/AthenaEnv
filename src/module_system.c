@@ -28,6 +28,7 @@ bool audio_started = false;
 bool cdfs_started = false;
 bool dev9_started = false;
 bool mc_started = false;
+bool mmc_started = false;
 bool hdd_started = false;
 bool filexio_started = false;
 bool camera_started = false;
@@ -73,6 +74,7 @@ void prepare_IOP() {
 	cdfs_started = false;
 	dev9_started = false;
 	mc_started = false;
+	mmc_started = false;
 	hdd_started = false;
 	filexio_started = false;
 	camera_started = false;
@@ -124,6 +126,16 @@ int load_default_module(int id) {
 	int ID, ret;
 	int HDDSTAT; // IOCTL...
 	switch (id) {
+#ifdef MMCE
+		case MMCE_MODULE:
+			if (!mmc_started) {
+				if (!mc_started) load_default_module(MC_MODULE);
+				ID = SifExecModuleBuffer(&mmceman_irx, size_mmceman_irx, 0, NULL, &ret);
+				REPORT("MMCE");
+				mmc_started = LOAD_SUCCESS();
+			}
+			break;
+#endif
 		case USBD_MODULE:
 		if (!usbd_started) {
 				ID = SifExecModuleBuffer(&usbd_irx, size_usbd_irx, 0, NULL, &ret);

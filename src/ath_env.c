@@ -127,6 +127,11 @@ static int qjs_handle_fh(JSContext *ctx, FILE *f, const char *filename, const ch
 				"globalThis.Keyboard = Keyboard;\n"
 				#endif
 
+				#ifdef MMCE
+				"import * as mmce from 'mmce';\n"
+				"globalThis.mmce = mmce;\n"
+				#endif
+
 				#ifdef ATHENA_MOUSE
 				"import * as Mouse from 'Mouse';\n"
 				"globalThis.Mouse = Mouse;\n"
@@ -290,6 +295,10 @@ static JSContext *JS_NewCustomContext(JSRuntime *rt)
 
 	#ifdef ATHENA_MOUSE
 	athena_mouse_init(ctx);
+	#endif
+
+	#ifdef MMCE
+	athena_mmce_init(ctx);
 	#endif
 
 	#ifdef ATHENA_CAMERA

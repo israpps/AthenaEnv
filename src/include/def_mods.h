@@ -44,6 +44,7 @@ extern bool audio_started;
 extern bool cdfs_started;
 extern bool dev9_started;
 extern bool mc_started;
+extern bool mmc_started;
 extern bool hdd_started;
 extern bool filexio_started;
 extern bool camera_started;
@@ -69,6 +70,7 @@ enum MODLIST {
     SIO2MAN_MODULE,
     DEV9_MODULE,
     CAMERA_MODULE,
+    MMCE_MODULE,
 };
 
 #define BOOT_MODULE 99
@@ -95,6 +97,10 @@ irx_define(SMAP);
 irx_define(NETMAN);
 #endif
 
+#ifdef MMCE
+irx_define(mmceman);
+#endif
+
 #ifdef ATHENA_AUDIO
 irx_define(libsd);
 irx_define(audsrv);
@@ -116,6 +122,9 @@ irx_define(freeram);
 irx_define(ds34bt);
 irx_define(ds34usb);
 irx_define(poweroff);
+#ifdef PPCTTY
+irx_define(ppctty);
+#endif
 
 int get_boot_device(const char* path);
 

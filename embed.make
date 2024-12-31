@@ -2,6 +2,9 @@
 $(EE_ASM_DIR)iomanx.c: $(PS2SDK)/iop/irx/iomanX.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ iomanX_irx
 
+$(EE_ASM_DIR)mmceman.c: modules/_precomp/mmceman.irx| $(EE_ASM_DIR)
+	$(BIN2S) $< $@ mmceman_irx
+
 $(EE_ASM_DIR)filexio.c: $(PS2SDK)/iop/irx/fileXio.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ fileXio_irx
 

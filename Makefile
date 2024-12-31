@@ -49,8 +49,10 @@ KEYBOARD ?= 1
 MOUSE ?= 1
 CAMERA ?= 0
 ARCADE ?= 1
+MMCE ?= 1
 
-EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ -lmc -lpad -laudsrv -lpatches -ldebug -lmath3d -ljpeg -lfreetype -lgskit_toolkit -lgskit -ldmakit -lpng -lz -lds34bt -lds34usb -lnetman -lps2ip -lcurl -lwolfssl -lkbd -lmouse -lvorbisfile -lvorbis -logg -llzma -lzip -lfileXio -lelf-loader-nocolour -lerl
+EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ \
+  $(addprefix -l, mc pad audsrv patches debug math3d jpeg freetype gskit_toolkit gskit dmakit png z ds34bt ds34usb netman ps2ip curl wolfssl kbd mouse vorbisfile vorbis ogg lzma zip fileXio elf-loader-nocolour erl)
 
 EE_INCS += -I$(PS2DEV)/gsKit/include -I$(PS2SDK)/ports/include -I$(PS2SDK)/ports/include/freetype2 -I$(PS2SDK)/ports/include/zlib
 
@@ -134,10 +136,12 @@ ifeq ($(CAMERA),1)
 endif
 
 ifneq ($(EE_SIO), 0)
-  EE_BIN := $(EE_BIN)_eesio
-  EE_BIN_PKD := $(EE_BIN_PKD)_eesio
   EE_CFLAGS += -D__EESIO_PRINTF
   EE_LIBS += -lsiocookie
+endif
+
+ifneq ($(MMCE), 0)
+  EE_CFLAGS += -DMMCE
 endif
 
 ifneq (_$(IOPRP_BIN)_,__)
