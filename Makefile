@@ -138,7 +138,8 @@ endif
 
 ifneq ($(EE_SIO), 0)
   EE_CFLAGS += -D__EESIO_PRINTF
-  EE_LIBS += -lsiocookie
+  APP_CORE += sioprintf.o
+endif
 ifneq ($(PPCTTY), 0)
   EE_CFLAGS += -DPPCTTY
   IOP_MODULES += ppctty.o

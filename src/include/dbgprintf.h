@@ -3,11 +3,13 @@
 
 #ifdef DEBUG
 #ifdef __EESIO_PRINTF
-    #include <SIOCookie.h>
-    #define dbginit() ee_sio_start(38400, 0, 0, 0, 0, 1)
-    #define dbgprintf(fmt, arg...) printf(fmt, ##arg)
+    #include <sio.h>
+void sio_printf(const char *fmt, ...);
+    #define dbginit() sio_init(38400, 0, 0, 0, 0)
+    #define dbgprintf(fmt, arg...) sio_printf(fmt, ##arg)
     #define dbgputs(put) sio_puts(put)
 #else
+    #include <stdio.h>
     #define dbginit()
     #define dbgprintf(fmt, arg...) printf(fmt, ##arg)
     #define dbgputs(put) puts(put)
