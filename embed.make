@@ -59,6 +59,9 @@ $(EE_ASM_DIR)cdfs.c: $(PS2SDK)/iop/irx/cdfs.irx | $(EE_ASM_DIR)
 $(EE_ASM_DIR)poweroff.c: $(PS2SDK)/iop/irx/poweroff.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ poweroff_irx
 
+$(EE_ASM_DIR)ppctty.c: $(PS2SDK)/iop/irx/ppctty.irx | $(EE_ASM_DIR)
+	$(BIN2S) $< $@ ppctty_irx
+
 modules/ds34bt/ee/libds34bt.a: modules/ds34bt/ee
 	$(MAKE) -C $<
 

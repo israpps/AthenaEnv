@@ -40,6 +40,7 @@ EE_ASM_DIR = embed/
 RESET_IOP ?= 1
 DEBUG ?= 0
 EE_SIO ?= 0
+PPCTTY ?= 1
 
 CLI ?= 0
 GRAPHICS ?= 1
@@ -138,6 +139,9 @@ endif
 ifneq ($(EE_SIO), 0)
   EE_CFLAGS += -D__EESIO_PRINTF
   EE_LIBS += -lsiocookie
+ifneq ($(PPCTTY), 0)
+  EE_CFLAGS += -DPPCTTY
+  IOP_MODULES += ppctty.o
 endif
 
 ifneq ($(MMCE), 0)

@@ -56,6 +56,9 @@ void prepare_IOP() {
     sbv_patch_enable_lmb();
     sbv_patch_disable_prefix_check(); 
 
+#ifdef PPCTTY
+	SifExecModuleBuffer(&ppctty_irx, size_ppctty_irx, 0, NULL, NULL);
+#endif
 #ifdef ARCADE_PS2
 	SifLoadModule("rom0:CDVDFSV", 0, NULL); // on arcades it's not loaded by default. we need it for mechacon comms
 #endif
