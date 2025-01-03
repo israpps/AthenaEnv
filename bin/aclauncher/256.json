@@ -1,6 +1,16 @@
 {
   "games": [
     {
+      "title": "Ace Driver 3 - Final Turn",
+      "publisher": "Namco",
+      "date": "2008",
+      "gameid": "NM00047",
+      "dongle": "ADT1005-NA-A, Ver.A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
       "title": "Cobra: The Arcade",
       "publisher": "Namco",
       "date": "November, 2005",
@@ -136,6 +146,16 @@
       "date": "2009",
       "gameid": "NM00052",
       "dongle": "GNX1001-NA-A",
+      "compat": [0, 0, 0, 0, 1],
+      "media": "HDD",
+      "gamepad": false
+    },
+    {
+      "title": "MotoGP",
+      "publisher": "Namco",
+      "date": "2007",
+      "gameid": "NM00039",
+      "dongle": "MGP1004-NA-A, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
       "gamepad": false
