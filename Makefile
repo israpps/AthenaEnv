@@ -51,6 +51,7 @@ MOUSE ?= 1
 CAMERA ?= 0
 ARCADE ?= 1
 MMCE ?= 1
+MMCE ?= 0
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ \
   $(addprefix -l, mc pad audsrv patches debug math3d jpeg freetype gskit_toolkit gskit dmakit png z ds34bt ds34usb netman ps2ip curl wolfssl kbd mouse vorbisfile vorbis ogg lzma zip fileXio elf-loader-nocolour erl)
@@ -147,6 +148,8 @@ endif
 
 ifneq ($(MMCE), 0)
   EE_CFLAGS += -DMMCE
+  ATHENA_MODULES += ath_mmce.o
+  IOP_MODULES += mmceman.o
 endif
 
 ifneq (_$(IOPRP_BIN)_,__)
