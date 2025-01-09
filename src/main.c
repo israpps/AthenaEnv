@@ -32,6 +32,7 @@ static void init_drivers() {
 
     load_default_module(FILEXIO_MODULE);
     load_default_module(MC_MODULE);
+    load_default_module(VMC_MODULE);
     load_default_module(USB_MASS_MODULE);
     load_default_module(CDFS_MODULE);
     load_default_module(HDD_MODULE);

@@ -27,6 +27,7 @@ bool audio_started = false;
 bool cdfs_started = false;
 bool dev9_started = false;
 bool mc_started = false;
+bool vmc_started = false;
 bool hdd_started = false;
 bool filexio_started = false;
 bool camera_started = false;
@@ -61,6 +62,7 @@ void prepare_IOP() {
 	cdfs_started = false;
 	dev9_started = false;
 	mc_started = false;
+	vmc_started = false;
 	hdd_started = false;
 	filexio_started = false;
 	camera_started = false;
@@ -214,7 +216,16 @@ int load_default_module(int id) {
 				mc_started = LOAD_SUCCESS();
 			}
 			break;
-
+		#ifdef ATHENA_VMC
+		case VMC_MODULE:
+			if (!filexio_started) load_default_module(FILEXIO_MODULE);
+			if (!vmc_started) {
+    			ID = SifExecModuleBuffer(&vmcman_irx, size_vmcman_irx, 0, NULL, &ret);
+				REPORT("VMCMAN");
+				vmc_started = LOAD_SUCCESS();
+			}
+			break;
+		#endif
 		#ifdef ATHENA_AUDIO
 		case AUDIO_MODULE:
 			if (!audio_started) {

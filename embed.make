@@ -11,6 +11,9 @@ $(EE_ASM_DIR)sio2man.c: $(PS2SDK)/iop/irx/sio2man.irx | $(EE_ASM_DIR)
 $(EE_ASM_DIR)mcman.c: $(PS2SDK)/iop/irx/mcman.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ mcman_irx
 
+$(EE_ASM_DIR)vmcman.c: $(PS2SDK)/iop/irx/vmcman.irx | $(EE_ASM_DIR)
+	$(BIN2S) $< $@ vmcman_irx
+
 $(EE_ASM_DIR)mcserv.c: $(PS2SDK)/iop/irx/mcserv.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ mcserv_irx
 

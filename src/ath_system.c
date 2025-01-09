@@ -507,7 +507,8 @@ static JSValue athena_stacktrace(JSContext *ctx, JSValue this_val, int argc, JSV
 	return arr;
 }
 
-
+#define NEWLIB_PORT_AWARE
+#include <fileio.h>
 static JSValue athena_fileXioMount(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv) {
     if (argc != 2 && argc != 3) return JS_ThrowSyntaxError(ctx, "wrong number of arguments");
     int mode = FIO_MT_RDWR;
@@ -651,6 +652,7 @@ static const JSCFunctionListEntry sif_funcs[] = {
 	JS_PROP_INT32_DEF("network", NETWORK_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("pads", PADS_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("memcard", MC_MODULE, JS_PROP_CONFIGURABLE),
+	JS_PROP_INT32_DEF("vmc", VMC_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("audio", AUDIO_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("usb_mass", USB_MASS_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("cdfs", CDFS_MODULE, JS_PROP_CONFIGURABLE),

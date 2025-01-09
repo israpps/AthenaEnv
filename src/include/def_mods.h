@@ -44,6 +44,7 @@ extern bool audio_started;
 extern bool cdfs_started;
 extern bool dev9_started;
 extern bool mc_started;
+extern bool vmc_started;
 extern bool hdd_started;
 extern bool filexio_started;
 extern bool camera_started;
@@ -69,6 +70,7 @@ enum MODLIST {
     SIO2MAN_MODULE,
     DEV9_MODULE,
     CAMERA_MODULE,
+    VMC_MODULE,
 };
 
 #define BOOT_MODULE 99
@@ -89,6 +91,10 @@ irx_define(ps2dev9);
 irx_define(ps2atad);
 irx_define(ps2hdd);
 irx_define(ps2fs);
+
+#ifdef ATHENA_VMC
+irx_define(vmcman);
+#endif
 
 #ifdef ATHENA_NETWORK
 irx_define(SMAP);

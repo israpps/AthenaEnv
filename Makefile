@@ -47,6 +47,7 @@ AUDIO ?= 1
 NETWORK ?= 1
 KEYBOARD ?= 1
 MOUSE ?= 1
+VMC ?= 1
 CAMERA ?= 0
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ -lmc -lpad -laudsrv -lpatches -ldebug -lmath3d -ljpeg -lfreetype -lgskit_toolkit -lgskit -ldmakit -lpng -lz -lds34bt -lds34usb -lnetman -lps2ip -lcurl -lwolfssl -lkbd -lmouse -lvorbisfile -lvorbis -logg -llzma -lzip -lfileXio -lelf-loader-nocolour -lerl
@@ -96,6 +97,11 @@ ifeq ($(AUDIO),1)
   APP_CORE += sound.o audsrv.o 
   ATHENA_MODULES += ath_sound.o 
   IOP_MODULES += libsd.o 
+endif
+
+ifeq ($(VMC),1)
+  EE_CFLAGS += -DATHENA_VMC
+  IOP_MODULES += vmcman.o 
 endif
 
 ifeq ($(NETWORK),1)
