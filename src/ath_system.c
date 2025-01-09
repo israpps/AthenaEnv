@@ -638,12 +638,32 @@ static JSValue athena_getiopmemory(JSContext *ctx, JSValue this_val, int argc, J
 	return obj;
 }
 
+
+
+static JSValue athena_bindkelf(JSContext *ctx, JSValue this_val, int argc, JSValueConst * argv){
+	if (argc != 3) JS_ThrowSyntaxError(ctx, "Wrong number of arguments");
+	int port;
+	const char *input, *output;
+	JS_ToInt32(ctx, &port, argv[0]);
+	input = JS_ToCString(ctx, argv[1]);
+	output = JS_ToCString(ctx, argv[2]);
+	int ret = BindKelf(port, input, output);
+	JSValue obj = JS_NewObject(ctx);
+    JS_DefinePropertyValueStr(ctx, obj, "result", JS_NewUint32(ctx, ret),    JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "BoundKbit", JS_NewString(ctx, BKc), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "BoundKc", JS_NewString(ctx, BKbit), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "Kbit", JS_NewString(ctx, Kbit),     JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "Kc", JS_NewString(ctx, Kc),         JS_PROP_C_W_E);
+	return obj;
+}
+
 static const JSCFunctionListEntry sif_funcs[] = {
 	JS_CFUNC_DEF("loadModule",            3, 		 athena_sifloadmodule),
 	JS_CFUNC_DEF("loadModuleBuffer",      3,       athena_sifloadmodulebuffer),
 	JS_CFUNC_DEF("loadDefaultModule",     3,       athena_sifloaddefaultmodule),
 	JS_CFUNC_DEF("reset",      			  0,     	athena_resetiop),
 	JS_CFUNC_DEF("getMemoryStats",        0,     	athena_getiopmemory),
+	JS_CFUNC_DEF("MechaemuDownLoadFile",  3,     	athena_bindkelf),
 	JS_PROP_INT32_DEF("keyboard", KEYBOARD_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("mouse", MOUSE_MODULE, JS_PROP_CONFIGURABLE),
 	JS_PROP_INT32_DEF("freeram", FREERAM_MODULE, JS_PROP_CONFIGURABLE),
@@ -677,3 +697,89 @@ JSModuleDef *athena_system_init(JSContext* ctx){
 	return athena_push_module(ctx, sif_init, sif_funcs, countof(sif_funcs), "IOP");
 }
 
+#include <errno.h>
+#include <libsecr-common.h>
+uint8_t BKc[16] = {0}, BKbit[16] = {0}, Kbit[16] = {0}, Kc[16] = {0};
+
+
+int BindKelf(int port, const char* input, const char* output) {
+    int result;
+	uint8_t* buf = NULL;
+	
+    int fd = open(input, O_RDONLY);
+    
+    if (fd < 0) return ENOENT;
+    int size = lseek(fd, 0, SEEK_END);
+    if (size < 0) return EINVAL;
+    lseek(fd, 0, SEEK_SET);
+    if ((buf = memalign(64, size)) != NULL) {
+        if ((read(fd, buf, size)) != size) {
+            close(fd);
+            result = EIO;
+        } else {
+            get_Kbit(buf, Kbit);
+            get_Kc(buf, Kc);
+            result = mechaemu_downloadfile(port + 2, 0, buf);
+            if (result) {
+                get_Kbit(buf, BKbit);
+                get_Kc(buf, BKc);
+                int outfd = open(output, O_WRONLY | O_CREAT | O_TRUNC);
+                if (outfd >= 0)
+                {
+                    int written = write(outfd, buf, size);
+                    if (written != size) {
+                        result = EIO;
+                    }// else {;}
+                    close(outfd);
+                } else {
+                    result = EIO;
+                }
+            } else {
+                result = EINVAL;
+            }
+        }
+    } else {
+        close(fd);
+        result = ENOMEM;
+    }
+	if (buf) free(buf);
+	return result;
+}
+
+// 0x00002b20
+void get_Kbit(const void *buffer, void *Kbit)
+{
+    const SecrKELFHeader_t *header = buffer;
+    int offset                     = sizeof(SecrKELFHeader_t);
+    uint8_t *kbit_offset;
+
+    if (header->BIT_count > 0)
+        offset += header->BIT_count * sizeof(SecrBitBlockData_t); // They used a loop for this. D:
+    if (((header->flags) & 1) != 0)
+        offset += ((unsigned char *)buffer)[offset] + 1;
+    if (((header->flags) & 0xF000) == 0)
+        offset += 8;
+
+    kbit_offset = (u8 *)buffer + offset;
+    memcpy(Kbit, (void *)kbit_offset, 16);
+    
+}
+
+// 0x00002c80
+void get_Kc(const void *buffer, void *Kc)
+{
+    const SecrKELFHeader_t *header = buffer;
+    int offset                     = sizeof(SecrKELFHeader_t);
+    uint8_t *kc_offset;
+
+    if (header->BIT_count > 0)
+        offset += header->BIT_count * sizeof(SecrBitBlockData_t); // They used a loop for this. D:
+    if (((header->flags) & 1) != 0)
+        offset += ((unsigned char *)buffer)[offset] + 1;
+    if (((header->flags) & 0xF000) == 0)
+        offset += 8;
+
+    kc_offset = (u8 *)buffer + offset + 0x10; // Goes after Kbit
+    memcpy(Kc, (void *)kc_offset, 16);
+    
+}

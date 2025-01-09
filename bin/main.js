@@ -1,12 +1,31 @@
 import test from "./test.js";
 
 test("module test ok");
+class transPulse {
+    r; g; b; a; min=0; max=128; tickdir = true;
+    constructor(R, G, B, A, MIN, MAX) {
+        this.r = R;
+        this.g = G;
+        this.b = B;
+        this.a = A;
+        this.min = MIN;
+        this.max = MAX;
+    }
+    
+    tick( ) {
+        if (this.a >= this.max) {
+            this.tickdir = false;
+        }
+        if (this.a <= this.min) {
+            this.tickdir = true;
+        }
+        if (this.tickdir) {this.a++;} else {this.a--;};
+        return Color.new(this.r,this.g,this.b,this.a);
+    }
+}
 
 let fr_float = Math.fround(15.6787869696);
 console.log(fr_float);
-
-IOP.loadDefaultModule(IOP.keyboard);
-Keyboard.init();
 
 let bg = new Image("dash/bg.png");
 
@@ -17,8 +36,6 @@ for (let i = 0; i < bg_palette.length; i += 4) {
     bg_palette[i+1] = Math.trunc(bg_palette[i+1] * 0.0f);
     bg_palette[i+2] = Math.trunc(bg_palette[i+2] * 1.0f);
 }
-
-console.log("Image size: " + bg.size + " | bits per pixel: " + bg.bpp);
 
 const unsel_color = Color.new(255, 255, 255, 64);
 const sel_color = Color.new(255, 255, 255);
@@ -32,6 +49,7 @@ font_medium.scale = 1.0f;
 font.scale = 0.44f;
 
 let no_icon = new Image("no_icon.png");
+let dong = new Image("mc_coh.png");
 
 console.log(JSON.stringify(Tasks.get()));
 
@@ -59,28 +77,19 @@ let menu_ptr = 0;
 
 let pad = Pads.get();
 
-let old_kbd_char = 0;
-let kbd_char = 0;
-
-const VK_OLD_UP = 27;
-const VK_NEW_UP = 44;
-const VK_OLD_DOWN = 27;
-const VK_NEW_DOWN = 43;
-const VK_RETURN = 10;
-
 var ee_info = System.getCPUInfo();
 
 let mem = undefined;
 
+let T = new transPulse(255,255,255,120,0,128)
 os.setInterval(() => {
     pad.update();
-
-    old_kbd_char = kbd_char;
-    kbd_char = Keyboard.get();
-
+    dong.color = T.tick();
+    //console.log(dong.color)
     Screen.clear();
 
     bg.draw(0, 0);
+    dong.draw(320, 224);
 
     font_bold.print(15, 5, "Athena dash");
 
@@ -88,16 +97,16 @@ os.setInterval(() => {
 
     font.print(15, 420, `Temp: ${System.getTemperature() === undefined? "NaN" : System.getTemperature()} C | RAM Usage: ${Math.floor(mem.used / 1024)}KB / ${Math.floor(ee_info.RAMSize / 1024)}KB`);
 
-    if(pad.justPressed(Pads.UP) || old_kbd_char == VK_OLD_UP && kbd_char == VK_NEW_UP) {
+    if(pad.justPressed(Pads.UP)) {
         app_table.unshift(app_table.pop());
 
     }
 
-    if(pad.justPressed(Pads.DOWN) || old_kbd_char == VK_OLD_DOWN && kbd_char == VK_NEW_DOWN){
+    if(pad.justPressed(Pads.DOWN)) {
         app_table.push(app_table.shift());
     }
 
-    if(pad.justPressed(Pads.CROSS) || kbd_char == VK_RETURN){
+    if(pad.justPressed(Pads.CROSS)){
         let bin = "athena.elf";
         if ("bin" in app_table[0]) {
             bin = app_table[0].bin;

@@ -12,3 +12,4 @@ embed/
 bin/brew_data.json
 ioprp.c
 *IOPRP.IMG
+modules/IOPRP_ARCADE.IMG

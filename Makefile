@@ -44,11 +44,13 @@ EE_SIO ?= 0
 CLI ?= 0
 GRAPHICS ?= 1
 AUDIO ?= 1
-NETWORK ?= 1
-KEYBOARD ?= 1
-MOUSE ?= 1
+NETWORK ?= 0
+KEYBOARD ?= 0
+MOUSE ?= 0
 VMC ?= 1
 CAMERA ?= 0
+
+IOPRP_BIN = modules/IOPRP_ARCADE.IMG
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ -lmc -lpad -laudsrv -lpatches -ldebug -lmath3d -ljpeg -lfreetype -lgskit_toolkit -lgskit -ldmakit -lpng -lz -lds34bt -lds34usb -lnetman -lps2ip -lcurl -lwolfssl -lkbd -lmouse -lvorbisfile -lvorbis -logg -llzma -lzip -lfileXio -lelf-loader-nocolour -lerl
 
@@ -56,7 +58,7 @@ EE_INCS += -I$(PS2DEV)/gsKit/include -I$(PS2SDK)/ports/include -I$(PS2SDK)/ports
 
 EE_INCS += -Imodules/ds34bt/ee -Imodules/ds34usb/ee
 
-EE_CFLAGS += -Wno-sign-compare -fno-strict-aliasing -fno-exceptions -fpermissive -DCONFIG_VERSION=\"$(shell cat VERSION)\" -D__TM_GMTOFF=tm_gmtoff -DPATH_MAX=256 -DPS2
+EE_CFLAGS += -Wno-sign-compare -fno-strict-aliasing -fno-exceptions -DCONFIG_VERSION=\"$(shell cat VERSION)\" -D__TM_GMTOFF=tm_gmtoff -DPATH_MAX=256 -DPS2
 ifeq ($(RESET_IOP),1)
   EE_CFLAGS += -DRESET_IOP
 endif
@@ -75,7 +77,7 @@ EXT_LIBS = modules/ds34usb/ee/libds34usb.a modules/ds34bt/ee/libds34bt.a
 JS_CORE = quickjs/cutils.o quickjs/libbf.o quickjs/libregexp.o quickjs/libunicode.o \
 				 quickjs/realpath.o quickjs/quickjs.o quickjs/quickjs-libc.o 
 
-APP_CORE = main.o vif.o draw_3D_colors.o draw_3D_colors_notex.o draw_3D.o draw_3D_notex.o draw_3D_lights.o draw_3D_lights_notex.o athena_math.o memory.o ee_tools.o module_system.o taskman.o pad.o system.o strUtils.o 
+APP_CORE = main.o downloadfile.o vif.o draw_3D_colors.o draw_3D_colors_notex.o draw_3D.o draw_3D_notex.o draw_3D_lights.o draw_3D_lights_notex.o athena_math.o memory.o ee_tools.o module_system.o taskman.o pad.o system.o strUtils.o 
 
 ATHENA_MODULES = ath_env.o ath_physics.o ath_vector.o ath_pads.o ath_system.o ath_archive.o ath_timer.o ath_task.o 
 
@@ -161,7 +163,7 @@ all: $(EXT_LIBS) $(EE_BIN) $(EE_ASM_DIR) $(EE_OBJS_DIR)
 	$(EE_STRIP) $(EE_BIN)
 
 # echo "Compressing $(EE_BIN_PKD)...\n"
-# ps2-packer $(EE_BIN) $(EE_BIN_PKD) > /dev/null
+	ps2-packer $(EE_BIN) bin/$(EE_BIN_PKD) > /dev/null
 	
 	mv $(EE_BIN) bin/
 #	mv $(EE_BIN_PKD) bin/
