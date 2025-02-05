@@ -172,7 +172,7 @@ static void setModulePath()
 static JSValue athena_sleep(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv)
 {
 	if (argc != 1) return JS_ThrowSyntaxError(ctx, "milliseconds expected.");
-	int sec;
+	int32_t sec;
 	JS_ToInt32(ctx, &sec, argv[0]);
 	sleep(sec);
 	return JS_UNDEFINED;
@@ -216,12 +216,13 @@ static JSValue athena_getmcinfo(JSContext *ctx, JSValue this_val, int argc, JSVa
 
 	mcGetInfo(mcslot, 0, &type, &freespace, &format);
 	mcSync(0, NULL, &result);
+	dbgprintf("mcGetInfo(%d, %d, %d, %d, %d) > %d\n", mcslot, 0, type, freespace, format, result);
 
 	JSValue obj = JS_NewObject(ctx);
 
-	JS_DefinePropertyValueStr(ctx, obj, "type", JS_NewUint32(ctx, type), JS_PROP_C_W_E);
-	JS_DefinePropertyValueStr(ctx, obj, "freemem", JS_NewUint32(ctx, freespace), JS_PROP_C_W_E);
-	JS_DefinePropertyValueStr(ctx, obj, "format", JS_NewUint32(ctx, format), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "type", JS_NewInt32(ctx, type), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "freemem", JS_NewInt32(ctx, freespace), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "format", JS_NewInt32(ctx, format), JS_PROP_C_W_E);
 
 	return obj;
 }
@@ -515,16 +516,30 @@ static JSValue athena_fileXioMount(JSContext *ctx, JSValue this_val, int argc, J
     const char* mountpoint = JS_ToCString(ctx, argv[0]);
     const char* blockdev = JS_ToCString(ctx, argv[1]);
     if (argc == 3) JS_ToInt32(ctx, &mode, argv[2]);
+	printf("fileXioMount(%s, %s, %d)\n", mountpoint, blockdev, mode);
     return JS_NewInt32(ctx, 
             fileXioMount(mountpoint, blockdev, mode)
         );
 }
+
 static JSValue athena_fileXioUmount(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv) {
     if (argc != 1) return JS_ThrowSyntaxError(ctx, "wrong number of arguments");
     const char* device = JS_ToCString(ctx, argv[0]);
+	printf("fileXioUmount(%s)\n", device);
     return JS_NewInt32(ctx, 
             fileXioUmount(device)
         );
+}
+
+static JSValue athena_mcformat(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv) {
+    if (argc != 2) return JS_ThrowSyntaxError(ctx, "wrong number of arguments");
+    int port =0, slot =0;
+    JS_ToInt32(ctx, &port, argv[0]);
+    JS_ToInt32(ctx, &slot, argv[1]);
+	int result;
+	mcSync(0, NULL, &result);
+	printf("mcFormat(%d, %d)> %d\n", port, slot, result);
+    return JS_NewInt32(ctx, result);
 }
 
 static const JSCFunctionListEntry system_funcs[] = {
@@ -549,10 +564,13 @@ static const JSCFunctionListEntry system_funcs[] = {
 	JS_CFUNC_DEF( "getMemoryStats",      	  0,   		athena_geteememory	 ),
 	JS_CFUNC_DEF( "getTemperature",      	  0,   		athena_gettemps	 ),
 	JS_CFUNC_DEF( "getStackTrace",      	  1,   		athena_stacktrace	 ),
-	JS_CFUNC_DEF( "fileXioMount",      	  1,   		    athena_fileXioMount	 ),
+	JS_CFUNC_DEF( "mcFormat",      	  1,   		    athena_mcformat	 ),
+	JS_CFUNC_DEF( "fileXioMount",      	  3,   		    athena_fileXioMount	 ),
 	JS_CFUNC_DEF( "fileXioUmount",      	  1,   		athena_fileXioUmount	 ),
 	JS_PROP_STRING_DEF("boot_path", boot_path, JS_PROP_CONFIGURABLE ),
 	JS_PROP_INT32_DEF("READ_ONLY", 1, JS_PROP_CONFIGURABLE ),
+	JS_PROP_INT32_DEF("FIO_MT_RDWR", FIO_MT_RDWR, JS_PROP_CONFIGURABLE ),
+	JS_PROP_INT32_DEF("FIO_MT_RDONLY", FIO_MT_RDONLY, JS_PROP_CONFIGURABLE ),
 	JS_PROP_INT32_DEF("SELECT", 2, JS_PROP_CONFIGURABLE ),
 };
 
@@ -640,6 +658,7 @@ static JSValue athena_getiopmemory(JSContext *ctx, JSValue this_val, int argc, J
 
 
 
+uint8_t BKc[16] = {0}, BKbit[16] = {0}, Kbit[16] = {0}, Kc[16] = {0};
 static JSValue athena_bindkelf(JSContext *ctx, JSValue this_val, int argc, JSValueConst * argv){
 	if (argc != 3) JS_ThrowSyntaxError(ctx, "Wrong number of arguments");
 	int port;
@@ -699,7 +718,7 @@ JSModuleDef *athena_system_init(JSContext* ctx){
 
 #include <errno.h>
 #include <libsecr-common.h>
-uint8_t BKc[16] = {0}, BKbit[16] = {0}, Kbit[16] = {0}, Kc[16] = {0};
+int mechaemu_downloadfile(int port, int slot, void* KELFPointer);
 
 
 int BindKelf(int port, const char* input, const char* output) {

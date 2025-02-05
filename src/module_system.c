@@ -43,7 +43,8 @@ void prepare_IOP() {
     #if defined(RESET_IOP)
 
 #if defined(IOPRP)
-    while (!SifIopRebootBuffer(ioprp, size_ioprp)){};
+    //while (!SifIopRebootBuffer(ioprp, size_ioprp)){};
+    while (!SifIopReset("", 0)){};
 #else
     while (!SifIopReset("", 0)){};
 #endif
@@ -223,6 +224,7 @@ int load_default_module(int id) {
     			ID = SifExecModuleBuffer(&mcserv_irx, size_mcserv_irx, 0, NULL, &ret);
 				REPORT("MCSERV");
 				mc_started = LOAD_SUCCESS();
+				if (mc_started)  mcInit(MC_TYPE_XMC); //to avoid hang on RPC for a module that did not remain resident
 			}
 			break;
 		#ifdef ATHENA_VMC
@@ -312,6 +314,7 @@ int load_default_module(int id) {
     			ID = SifExecModuleBuffer(&fileXio_irx, size_fileXio_irx, 0, NULL, &ret);
 				REPORT("FILEXIO");
 				filexio_started = LOAD_SUCCESS();
+				if (filexio_started) fileXioInit();
 			}
 			break;
 		#ifdef ATHENA_CAMERA
