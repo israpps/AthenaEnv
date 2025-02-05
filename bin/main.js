@@ -43,16 +43,23 @@ console.log(fr_float);
 let bg = new Image("dash/246.png");
 bg.filter = NEAREST;
 bg.color = Color.new(128,128,128);
-/*
-for (let i = 0; i < bg_palette.length; i += 4) {
-    bg_palette[i+0] = Math.trunc(bg_palette[i+0] * 0.2f);
-    bg_palette[i+1] = Math.trunc(bg_palette[i+1] * 0.0f);
-    bg_palette[i+2] = Math.trunc(bg_palette[i+2] * 1.0f);
-}*/
+
+let dongtable = [];
+let D = System.listDir("/dongles");
+for (let i = 0; i < D.length; i++) {
+    if (D[i].dir) {
+        console.log("std.exists("+D[i].name+"\"/boot.bin\")", std.exists("dongles/"+D[i].name+"/boot.bin"));
+        if (std.exists("dongles/"+D[i].name+"/boot.bin")) {
+            console.log("ADDFOLDER: "+D[i].name);
+            dongtable.push(D[i].name);
+        }
+    }
+}
 
 const unsel_color = Color.new(255, 255, 255, 64);
 const sel_color = Color.new(255, 255, 255);
 const yellow = Color.new(255, 255, 0);
+const red = Color.new(250, 0, 0);
 
 let font = new Font("fonts/LEMONMILK-Light.otf");
 let font_medium = new Font("fonts/CONSOLA.TTF");
@@ -219,6 +226,23 @@ os.setInterval(() => {
         colorprint(font, 340, 310, `Free Space:${Mcinfo.ports[1].freemem}KB`, sel_color);
         colorprint(font, 100, 330, `formatted: ${Mcinfo.ports[0].format == 1}`, sel_color);
         colorprint(font, 340, 330, `formatted: ${Mcinfo.ports[1].format == 1}`, sel_color);
+    } else if (CUI == UI.INSTALL_FOLDER_TO_DONGLE) {
+        if (dongtable.length > 0) {
+            if(pad.justPressed(Pads.UP)) {
+                dongtable.unshift(dongtable.pop());
+            }
+        
+            if(pad.justPressed(Pads.DOWN)) {
+                dongtable.push(dongtable.shift());
+            }
+            colorprint(font_medium, 20, 140, dongtable[0], yellow);
+            for(let i = 1; i < (dongtable.length < 10? dongtable.length : 10); i++) {
+                colorprint(font_medium, 20, 140+(23*i), dongtable[i], sel_color);
+            }
+        } else {
+            colorprint(font_medium, 20, 140, "No folders found", red);
+            colorprint(font_medium, 20, 160, " put your dongle contents on folders inside './dongles'", red);
+        }
     }
 
     
