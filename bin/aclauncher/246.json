@@ -53,7 +53,7 @@
       "compat": [2, 1, 1, 1, 0],
       "media": "CD",
       "gamepad": true,
-      "bootfile": "BDRGAME"
+      "bootfile": "BGRLOAD"
     },
     {
       "title": "Capcom Fighting Jam",
@@ -75,7 +75,7 @@
       "compat": [2, 2, 1, 2, 2],
       "media": "CD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "DGNLOAD"
     },
     {
       "title": "Dragon Chronicle: Online",
@@ -86,7 +86,7 @@
       "compat": [2, 2, 1, 1, 1],
       "media": "CD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "DCOLOAD"
     },
     {
       "title": "Fate/Unlimited Codes",
@@ -108,7 +108,7 @@
       "compat": [2, 2, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "NTRLOAD"
     },
     {
       "title": "Minna de Kitaeru Zenno Training 1.50 (Disc A)",
@@ -119,7 +119,7 @@
       "compat": [2, 2, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "NTRLOAD"
     },
     {
       "title": "Minna de Kitaeru Zenno Training 1.50 (Disc B)",
@@ -130,7 +130,7 @@
       "compat": [2, 2, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "NTRLOAD"
     },
     {
       "title": "Minna de Kitaeru Zenno Training 1.60",
@@ -141,7 +141,7 @@
       "compat": [2, 2, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "NTRLOAD"
     },
     {
       "title": "Mobile Suit Gundam Seed Destiny: Rengou vs. ZAFT II",
@@ -152,7 +152,7 @@
       "compat": [2, 2, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "SE2LOAD"
     },
     {
       "title": "Mobile Suit Gundam Seed: Rengou vs. ZAFT",
@@ -163,7 +163,7 @@
       "compat": [2, 1, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": ""
+      "bootfile": "SEDLOAD"
     },
     {
       "title": "Mobile Suit Z Gundam: AEUG vs. Titans",
@@ -174,7 +174,7 @@
       "compat": [2, 1, 1, 1, 1],
       "media": "DVD",
       "gamepad": false,
-      "bootfile": "GDMLOAD"
+      "bootfile": "GDXLOAD"
     },
     {
       "title": "Mobile Suit Z Gundam: AEUG vs. Titans DX",
