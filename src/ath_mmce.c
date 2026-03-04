@@ -25,6 +25,7 @@ JSMODDEF(mmce_ping) {
     int ret = Icardping(slot, delay, &prodid, &revid, &protid);
     if (ret != -1) {
         obj = JS_NewObject(ctx);
+        JS_DefinePropertyValueStr(ctx, obj, "ret", JS_NewUint32(ctx, ret), JS_PROP_C_W_E);
         JS_DefinePropertyValueStr(ctx, obj, "product", JS_NewUint32(ctx, prodid), JS_PROP_C_W_E);
         JS_DefinePropertyValueStr(ctx, obj, "revision", JS_NewUint32(ctx, revid), JS_PROP_C_W_E);
         JS_DefinePropertyValueStr(ctx, obj, "protocol", JS_NewUint32(ctx, protid), JS_PROP_C_W_E);
@@ -58,7 +59,7 @@ static const JSCFunctionListEntry module_funcs[] = {
     //JS_CFUNC_DEF("SetCard", 1, mmce_setcard),
     //JS_CFUNC_DEF("SetChannel", 1, mmce_setchan),
     //JS_CFUNC_DEF("GetChannel", 1, mmce_getchan),
-    JS_CFUNC_DEF("SetGameID", 1, mmce_setgameid),
+    JS_CFUNC_DEF("SetGameID", 2, mmce_setgameid),
     JS_CFUNC_DEF("GetGameID", 1, mmce_getgameid),
     //JS_CFUNC_DEF("ioctl_ProbePort", 1, mmce_probeport),
 };
@@ -121,9 +122,9 @@ int Isetgameid(int slot, const char *gameid)
     SETSLOT();
     char new_gameid[MAX_GAMEID_LEN];
     
-    strncpy(new_gameid, gameid, MAX_GAMEID_LEN);
+    strncpy(new_gameid, gameid, MAX_GAMEID_LEN-1);
 
-
+    dbgprintf("%s(%d, %s)\n", __func__, slot, new_gameid);
     res = fileXioDevctl(mmce, MMCEMAN_CMD_SET_GAMEID, gameid, MAX_GAMEID_LEN, NULL, 0);
     if (res == -1) {
         //dbgprintf("[FAIL] error setting GameID: %i\n", res);

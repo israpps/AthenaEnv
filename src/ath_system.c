@@ -507,6 +507,40 @@ static JSValue athena_stacktrace(JSContext *ctx, JSValue this_val, int argc, JSV
 	return arr;
 }
 
+// based on uyjulian's https://gist.github.com/uyjulian/99401bab576ae422a76f9004b79b4f82
+/*static JSValue athena_getsys252clock(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv)
+{
+	uint64_t v4 = 0;
+	int64_t v5 = 0;
+	for (int i = 0; i < 10; i += 1)
+	{
+		int64_t TimerSystemTime = GetTimerSystemTime();
+		DelayThread(16666);
+		v4 += GetTimerSystemTime() - TimerSystemTime;
+		sceGsSyncV(0);
+		int64_t v7 = GetTimerSystemTime();
+		sceGsSyncV(0);
+		v5 += GetTimerSystemTime() - v7;
+	}
+	int64_t v8 = (int)(100 * v5 / v4);
+	int64_t gClockType = 0;
+	if ( v8 >= 97 && v8 <= 103 )
+		gClockType = 100;
+	else if ( v8 >= 130 && v8 <= 136 )
+		gClockType = 133;
+	if ( gClockType <= 100 )
+	{
+		// System is in 246+ mode
+		// e.g. display "SYSTEM256 MODE SETTING ERROR"
+		return JS_NewBool(ctx, false);
+	}
+	else
+	{
+		// System is in 256 mode
+		return JS_NewBool(ctx, true);
+	}
+}*/
+
 static const JSCFunctionListEntry system_funcs[] = {
 	JS_CFUNC_DEF( "listDir",  1,         			athena_dir			 		 ),
 	JS_CFUNC_DEF( "removeDirectory",    		  1,       	athena_removeDir	 ),
@@ -524,11 +558,12 @@ static const JSCFunctionListEntry system_funcs[] = {
 	JS_CFUNC_DEF( "getDiscType",        		  0,     	athena_getDiscType	 ),
 	JS_CFUNC_DEF( "checkDiscTray",      		  0,   		athena_checkDiscTray	 ),
 	JS_CFUNC_DEF( "setDarkMode",      		  1,   		athena_darkmode	 ),
-	JS_CFUNC_DEF( "getCPUInfo",      		  0,   		athena_getcpuinfo	 ),
-	JS_CFUNC_DEF( "getGPUInfo",      		  0,   		athena_getgpuinfo	 ),
-	JS_CFUNC_DEF( "getMemoryStats",      	  0,   		athena_geteememory	 ),
-	JS_CFUNC_DEF( "getTemperature",      	  0,   		athena_gettemps	 ),
-	JS_CFUNC_DEF( "getStackTrace",      	  1,   		athena_stacktrace	 ),
+	JS_CFUNC_DEF( "getCPUInfo",      		  0,   		athena_getcpuinfo ),
+	JS_CFUNC_DEF( "getGPUInfo",      		  0,   		athena_getgpuinfo ),
+	JS_CFUNC_DEF( "getMemoryStats",      	  0,   		athena_geteememory ),
+	JS_CFUNC_DEF( "getTemperature",      	  0,   		athena_gettemps ),
+	JS_CFUNC_DEF( "getStackTrace",      	  1,   		athena_stacktrace ),
+	//JS_CFUNC_DEF( "GetSystem256OverClockStatus", 0,     athena_getsys252clock ),
 	JS_PROP_STRING_DEF("boot_path", boot_path, JS_PROP_CONFIGURABLE ),
 	JS_PROP_INT32_DEF("READ_ONLY", 1, JS_PROP_CONFIGURABLE ),
 	JS_PROP_INT32_DEF("SELECT", 2, JS_PROP_CONFIGURABLE ),
@@ -538,7 +573,7 @@ static JSValue athena_sifloadmodule(JSContext *ctx, JSValue this_val, int argc, 
 	if (argc != 1 && argc != 3) return JS_ThrowSyntaxError(ctx, "wrong number of arguments");
 	const char *path = JS_ToCString(ctx, argv[0]);
 
-	int arg_len = 0;
+	int arg_len = 0, ret = 1;
 	const char *args = NULL;
 
 	if(argc == 3){
@@ -546,8 +581,12 @@ static JSValue athena_sifloadmodule(JSContext *ctx, JSValue this_val, int argc, 
 		args = JS_ToCString(ctx, argv[2]);
 	}
 	
-	int result = SifLoadModule(path, arg_len, args);
-	return JS_NewInt32(ctx, result);
+	int irx_id = SifLoadStartModule(path, arg_len, args, &ret);
+	
+	JSValue obj = JS_NewObject(ctx);
+    JS_DefinePropertyValueStr(ctx, obj, "id", JS_NewUint32(ctx, irx_id), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "ret", JS_NewUint32(ctx, ret), JS_PROP_C_W_E);
+	return obj;
 }
 
 
@@ -556,7 +595,7 @@ static JSValue athena_sifloadmodulebuffer(JSContext *ctx, JSValue this_val, int 
 	size_t size = 0;
 	void* ptr = JS_ToCStringLen(ctx, &size, argv[0]);
 
-	int arg_len = 0;
+	int arg_len = 0, ret = 1;
 	const char *args = NULL;
 
 	if(argc == 3){
@@ -564,8 +603,11 @@ static JSValue athena_sifloadmodulebuffer(JSContext *ctx, JSValue this_val, int 
 		args = JS_ToCString(ctx, argv[2]);
 	}
 
-	int result = SifExecModuleBuffer((void*)ptr, size, arg_len, args, NULL);
-	return JS_NewInt32(ctx, result);
+	int irx_id = SifExecModuleBuffer((void*)ptr, size, arg_len, args, &ret);
+	JSValue obj = JS_NewObject(ctx);
+    JS_DefinePropertyValueStr(ctx, obj, "id", JS_NewUint32(ctx, irx_id), JS_PROP_C_W_E);
+	JS_DefinePropertyValueStr(ctx, obj, "ret", JS_NewUint32(ctx, ret), JS_PROP_C_W_E);
+	return obj;
 }
 
 static JSValue athena_sifloaddefaultmodule(JSContext *ctx, JSValue this_val, int argc, JSValueConst *argv){

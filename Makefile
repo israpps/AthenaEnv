@@ -38,20 +38,19 @@ EE_OBJS_DIR = obj/
 EE_ASM_DIR = embed/
 
 RESET_IOP ?= 1
-DEBUG ?= 0
-EE_SIO ?= 0
+DEBUG ?= 1
+EE_SIO ?= 1
 PPCTTY ?= 1
 
 CLI ?= 0
 GRAPHICS ?= 1
 AUDIO ?= 1
-NETWORK ?= 1
-KEYBOARD ?= 1
-MOUSE ?= 1
+NETWORK ?= 0
+KEYBOARD ?= 0
+MOUSE ?= 0
 CAMERA ?= 0
 ARCADE ?= 1
 MMCE ?= 1
-MMCE ?= 0
 
 EE_LIBS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib/ -Lmodules/ds34bt/ee/ -Lmodules/ds34usb/ee/ \
   $(addprefix -l, mc pad audsrv patches debug math3d jpeg freetype gskit_toolkit gskit dmakit png z ds34bt ds34usb netman ps2ip curl wolfssl kbd mouse vorbisfile vorbis ogg lzma zip fileXio elf-loader-nocolour erl)
@@ -100,6 +99,7 @@ ifeq ($(ARCADE),1)
   EE_CFLAGS += -DARCADE_PS2
   IOPRP_BIN = ACIOPRP.IMG
   IOPRP_CONTENTS = $(addprefix $(PS2SDK)/iop/irx/, fileio.irx ioman.irx)
+  NETWORK = 0
 endif
 
 ifeq ($(AUDIO),1)
@@ -141,6 +141,7 @@ ifneq ($(EE_SIO), 0)
   EE_CFLAGS += -D__EESIO_PRINTF
   APP_CORE += sioprintf.o
 endif
+
 ifneq ($(PPCTTY), 0)
   EE_CFLAGS += -DPPCTTY
   IOP_MODULES += ppctty.o

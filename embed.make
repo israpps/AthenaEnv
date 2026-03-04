@@ -11,7 +11,8 @@ $(EE_ASM_DIR)filexio.c: $(PS2SDK)/iop/irx/fileXio.irx | $(EE_ASM_DIR)
 $(EE_ASM_DIR)sio2man.c: $(PS2SDK)/iop/irx/sio2man.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ sio2man_irx
 
-$(EE_ASM_DIR)mcman.c: $(PS2SDK)/iop/irx/mcman.irx | $(EE_ASM_DIR)
+# we want arcade MCMAN, otherwise, we cant keep up console running
+$(EE_ASM_DIR)mcman.c: $(PS2SDK)/iop/irx/dongleman.irx | $(EE_ASM_DIR)
 	$(BIN2S) $< $@ mcman_irx
 
 $(EE_ASM_DIR)mcserv.c: $(PS2SDK)/iop/irx/mcserv.irx | $(EE_ASM_DIR)

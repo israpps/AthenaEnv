@@ -8,7 +8,8 @@
       "dongle": "ADT1005-NA-A, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "NRALOAD"
     },
     {
       "title": "Cobra: The Arcade",
@@ -18,7 +19,8 @@
       "dongle": "CBR1, Ver.A",
       "compat": [2, 2, 2, 2, 1],
       "media": "HDD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": "CBRLOAD"
     },
     {
       "title": "Cobra: The Arcade Rev.B",
@@ -28,7 +30,8 @@
       "dongle": "CBR1, Ver.B",
       "compat": [2, 2, 2, 2, 1],
       "media": "HDD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": "CBRLOAD"
     },
     {
       "title": "Druaga Online: The Story of Aon 1.00",
@@ -38,7 +41,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.10",
@@ -48,7 +52,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.20",
@@ -58,7 +63,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.40",
@@ -68,7 +74,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.50",
@@ -78,7 +85,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.60",
@@ -88,7 +96,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.65",
@@ -98,7 +107,8 @@
       "dongle": "DOL165-1-ST-I",
       "compat": [0, 0, 0, 0, 1],
       "media": "?",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Druaga Online: The Story of Aon 1.70",
@@ -108,7 +118,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "?",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Kinnikuman: Muscle Grand Prix",
@@ -118,7 +129,8 @@
       "dongle": "KN1, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "KINLOAD"
     },
     {
       "title": "Kinnikuman: Muscle Grand Prix 2",
@@ -128,7 +140,8 @@
       "dongle": "KN2, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Mobile Suit Gundam: Gundam vs. Gundam",
@@ -138,7 +151,8 @@
       "dongle": "GVS1, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "GDNLOAD"
     },
     {
       "title": "Mobile Suit Gundam: Gundam vs. Gundam Next",
@@ -148,7 +162,8 @@
       "dongle": "GNX1001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "GNXLOAD"
     },
     {
       "title": "MotoGP",
@@ -158,7 +173,8 @@
       "dongle": "MGP1004-NA-A, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "MGPLOAD"
     },
     {
       "title": "Super Dragon Ball Z",
@@ -168,7 +184,8 @@
       "dongle": "DB1, Ver.B",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "DBALOAD"
     },
     {
       "title": "Taiko Drum Master 10 / Taiko no Tatsujin 10",
@@ -178,7 +195,8 @@
       "dongle": "TK101001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T10LOAD"
     },
     {
       "title": "Taiko Drum Master 11 / Taiko no Tatsujin 11",
@@ -188,7 +206,8 @@
       "dongle": "T111001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T11LOAD"
     },
     {
       "title": "Taiko Drum Master 11 Asian Version / Taiko no Tatsujin 11 A",
@@ -198,7 +217,8 @@
       "dongle": "T111004-NA-A ",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T11LOAD"
     },
     {
       "title": "Taiko Drum Master 12 / Taiko no Tatsujin 12",
@@ -208,7 +228,8 @@
       "dongle": "T121001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T12LOAD"
     },
     {
       "title": "Taiko Drum Master 12 Asian Version / Taiko no Tatsujin 12 A",
@@ -218,7 +239,8 @@
       "dongle": "?",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T12LOAD"
     },
     {
       "title": "Taiko Drum Master 12 More / Taiko no Tatsujin 12 More",
@@ -228,7 +250,8 @@
       "dongle": "T121001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Taiko Drum Master 13 / Taiko no Tatsujin 13",
@@ -238,7 +261,8 @@
       "dongle": "T1301-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T13LOAD"
     },
     {
       "title": "Taiko Drum Master 14 / Taiko no Tatsujin 14",
@@ -248,7 +272,8 @@
       "dongle": "T141001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T14LOAD"
     },
     {
       "title": "Taiko Drum Master 14 More / Taiko no Tatsujin 14 More",
@@ -258,7 +283,8 @@
       "dongle": "T141002-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "HDD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "T14LOAD"
     },
     {
       "title": "Taiko Drum Master 9 / Taiko no Tatsujin 9",
@@ -268,7 +294,8 @@
       "dongle": "TK91001-NA-A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": "TA9LOAD"
     },
     {
       "title": "Tekken 5",
@@ -278,7 +305,8 @@
       "dongle": "TE5(1/2/3), Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "TK5LOAD"
     },
     {
       "title": "Tekken 5.1 - Jpn",
@@ -288,7 +316,8 @@
       "dongle": "TE51, Ver.C3",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "TK5LOAD"
     },
     {
       "title": "Tekken 5.1 - USA",
@@ -298,7 +327,8 @@
       "dongle": "TE5(2/3), Ver.B",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "TK5LOAD"
     },
     {
       "title": "Tekken 5.1 Live Monitor (Jpn)",
@@ -308,7 +338,8 @@
       "dongle": "TE5L, Ver.B",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "TK5LOAD"
     },
     {
       "title": "Tekken 5: Dark Resurrection",
@@ -318,7 +349,8 @@
       "dongle": "TED(1/2), Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "T55LOAD"
     },
     {
       "title": "Tekken 5: Dark Resurrection Rev. B",
@@ -328,7 +360,8 @@
       "dongle": "TED(1/2), Ver.B",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": true
+      "gamepad": true,
+      "bootfile": "T55LOAD"
     },
     {
       "title": "The Battle of Yu Yu Hakusho: Dark Tournament",
@@ -338,7 +371,8 @@
       "dongle": "YH1, Ver.A",
       "compat": [0, 0, 0, 0, 1],
       "media": "DVD",
-      "gamepad": false
+      "gamepad": false,
+      "bootfile": ""
     },
     {
       "title": "Time Crisis 4",
@@ -348,7 +382,8 @@
       "dongle": "TSF1002-NA-A",
       "compat": [0, 0, 0, 0, 2],
       "media": "HDD",
-      "gamepad": false 
+      "gamepad": false,
+      "bootfile": "TC4LOAD"
     }
   ]
 }

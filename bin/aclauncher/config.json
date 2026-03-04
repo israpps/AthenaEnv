@@ -1,0 +1,6 @@
+{
+    "config": {
+        "confirm_game_launch": false,
+        "compatibilty_check": false
+    }
+}

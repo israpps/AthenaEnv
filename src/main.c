@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
     #endif
 
     init_taskman();
-
+    dbgprintf("taskman done\n");
 	const char* errMsg = NULL;
 
     dark_mode = true;
