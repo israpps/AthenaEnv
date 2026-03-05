@@ -176,7 +176,7 @@ all: $(EXT_LIBS) $(EE_BIN) $(EE_ASM_DIR) $(EE_OBJS_DIR)
 	$(EE_STRIP) $(EE_BIN)
 
 # echo "Compressing $(EE_BIN_PKD)...\n"
-# ps2-packer $(EE_BIN) $(EE_BIN_PKD) > /dev/null
+	ps2-packer $(EE_BIN) bin/$(EE_BIN_PKD) > /dev/null
 	
 	mv $(EE_BIN) bin/
 #	mv $(EE_BIN_PKD) bin/
