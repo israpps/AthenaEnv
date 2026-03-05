@@ -9,6 +9,11 @@ const whtsol = Color.new(255, 255, 255, 128);
 const sel_color = Color.new(255, 255, 0);
 const redcol = Color.new(255, 0, 0);
 
+const NOTFWAITVAL = 200
+let notifwaiter = NOTFWAITVAL;
+let notifs = [];
+let Cnotif = undefined;
+
 //const SYS252_IS_OVERCLOCKED = System.GetSystem256OverClockStatus();
 const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
@@ -84,14 +89,25 @@ font.scale = 0.44f;
 tfont.scale = 0.54f;
 logfont.scale = 0.34f;
 
-console.log(JSON.stringify(Tasks.get()));
-
-let file = std.open("aclauncher/246.json", "r");
-var gdb_246 = JSON.parse(file.readAsString());
-file.close()
+var gdb_246;
+var gdb_256;
+let file = std.open("aclauncher/246a.json", "r");
+if (file != null) {
+    gdb_246 = JSON.parse(file.readAsString());
+    file.close()
+} else {
+    gdb_246 = null;
+    notifs.push("could not find system246 gamelist");
+}
 file = std.open("aclauncher/256.json", "r");
-var gdb_256 = JSON.parse(file.readAsString());
-file.close()
+if (file != null) {
+    gdb_256 = JSON.parse(file.readAsString());
+    file.close()
+} else {
+    gdb_256 = null;
+    notifs.push("could not find system256 gamelist");
+}
+
 //console.log("246:")
 //gdb_246.games.forEach(listgames);
 //console.log("256:")
@@ -163,7 +179,7 @@ function SysQuery() {
         cab246.color = whtsol;
         cab256.color = sel_color;
     } if(pad.justPressed(Pads.CROSS)) {
-        CUISTATE = UISTATE.GAMELIST;
+        if (app_table[CURSYSTEM] != null) CUISTATE = UISTATE.GAMELIST;
     }
     colorprint(font_medium, 85, 111, "system", CURSYSTEM == 246 ? sel_color : unsel_color);
     colorprint(namco_font, 110, 130, "246", CURSYSTEM == 246 ? sel_color : unsel_color);
@@ -171,7 +187,8 @@ function SysQuery() {
     colorprint(font_medium, 485, 111, "system", CURSYSTEM == 256 ? sel_color : unsel_color);
     colorprint(namco_font, 510, 130, "256", CURSYSTEM == 256 ? sel_color : unsel_color);
     cab256.draw(390, 140);
-    font.print(250, 420, `registered games: ${CURSYSTEM == 256 ? gdb_256.games.length : gdb_246.games.length}`);
+    if (app_table[CURSYSTEM] != null) font.print(250, 420, `registered games: ${CURSYSTEM == 256 ? gdb_256.games.length : gdb_246.games.length}`);
+    else font.print(250, 420, "game database not found");
 }
 
 function DisplayGlist() {
@@ -223,10 +240,6 @@ function DisplayGlist() {
 }
 
 // TODO: if mmce is not found, wait for it here a bit, then throw error assuming the dongle is not an mmce compliant device
-const NOTFWAITVAL = 150
-let notifwaiter = NOTFWAITVAL;
-let notifs = ["test"];
-let Cnotif = undefined;
 
 os.setInterval(() => {
     pad.update();
